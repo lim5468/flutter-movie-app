@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:movie_app/domain/model/movie_genre/movie_genre.dart';
 import 'package:movie_app/domain/usecase/get_movie_genres_usecase.dart';
 import 'package:movie_app/domain/usecase/get_movies_by_genre_usecase.dart';
 import 'package:movie_app/utils/extensions/error_helper.dart';
@@ -128,6 +129,33 @@ class DiscoverBloc extends Bloc<DiscoverEvent, DiscoverState> {
     Refresh event,
     Emitter<DiscoverState> emitter,
   ) async {
-    add(const Init());
+    final currentState = state;
+
+    emitter(const Loading());
+
+    //simulate a little delay for better visual experience
+    await Future<void>.delayed(const Duration(seconds: 1));
+
+    try {
+      final genres = await _getMovieGenresUseCase.execute();
+
+      final List<MovieGenre> selectedGenres =
+          currentState is Loaded ? currentState.selectedMovieGenres : [];
+
+      emitter(
+        Loaded(
+          movieGenres: genres,
+          selectedMovieGenres: selectedGenres,
+        ),
+      );
+
+      add(const FetchMovieList());
+    } catch (e) {
+      emitter(
+        Error(
+          message: e.errorMessage,
+        ),
+      );
+    }
   }
 }
