@@ -19,17 +19,16 @@ mixin _$DiscoverEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function() fetchMovieGenreList,
-    required TResult Function(int page) fetchMovieList,
+    required TResult Function(int page, bool useDelay) fetchMovieList,
     required TResult Function(List<MovieGenre> movieGenres) setMovieGenres,
     required TResult Function() refresh,
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function()? fetchMovieGenreList,
-    TResult? Function(int page)? fetchMovieList,
+    TResult? Function(int page, bool useDelay)? fetchMovieList,
     TResult? Function(List<MovieGenre> movieGenres)? setMovieGenres,
     TResult? Function()? refresh,
   }) =>
@@ -37,26 +36,25 @@ mixin _$DiscoverEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function()? fetchMovieGenreList,
-    TResult Function(int page)? fetchMovieList,
+    TResult Function(int page, bool useDelay)? fetchMovieList,
     TResult Function(List<MovieGenre> movieGenres)? setMovieGenres,
     TResult Function()? refresh,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Init value) init,
-    required TResult Function(FetchMovieGenreList value) fetchMovieGenreList,
     required TResult Function(FetchMovieList value) fetchMovieList,
     required TResult Function(SetMovieGenres value) setMovieGenres,
     required TResult Function(Refresh value) refresh,
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Init value)? init,
-    TResult? Function(FetchMovieGenreList value)? fetchMovieGenreList,
     TResult? Function(FetchMovieList value)? fetchMovieList,
     TResult? Function(SetMovieGenres value)? setMovieGenres,
     TResult? Function(Refresh value)? refresh,
@@ -65,7 +63,6 @@ mixin _$DiscoverEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Init value)? init,
-    TResult Function(FetchMovieGenreList value)? fetchMovieGenreList,
     TResult Function(FetchMovieList value)? fetchMovieList,
     TResult Function(SetMovieGenres value)? setMovieGenres,
     TResult Function(Refresh value)? refresh,
@@ -86,9 +83,9 @@ class _$DiscoverEventCopyWithImpl<$Res, $Val extends DiscoverEvent>
     implements $DiscoverEventCopyWith<$Res> {
   _$DiscoverEventCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
+// ignore: unused_field
   final $Val _value;
-  // ignore: unused_field
+// ignore: unused_field
   final $Res Function($Val) _then;
 
   /// Create a copy of DiscoverEvent
@@ -136,8 +133,7 @@ class _$InitImpl implements Init {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function() fetchMovieGenreList,
-    required TResult Function(int page) fetchMovieList,
+    required TResult Function(int page, bool useDelay) fetchMovieList,
     required TResult Function(List<MovieGenre> movieGenres) setMovieGenres,
     required TResult Function() refresh,
   }) {
@@ -148,8 +144,7 @@ class _$InitImpl implements Init {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function()? fetchMovieGenreList,
-    TResult? Function(int page)? fetchMovieList,
+    TResult? Function(int page, bool useDelay)? fetchMovieList,
     TResult? Function(List<MovieGenre> movieGenres)? setMovieGenres,
     TResult? Function()? refresh,
   }) {
@@ -160,8 +155,7 @@ class _$InitImpl implements Init {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function()? fetchMovieGenreList,
-    TResult Function(int page)? fetchMovieList,
+    TResult Function(int page, bool useDelay)? fetchMovieList,
     TResult Function(List<MovieGenre> movieGenres)? setMovieGenres,
     TResult Function()? refresh,
     required TResult orElse(),
@@ -176,7 +170,6 @@ class _$InitImpl implements Init {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Init value) init,
-    required TResult Function(FetchMovieGenreList value) fetchMovieGenreList,
     required TResult Function(FetchMovieList value) fetchMovieList,
     required TResult Function(SetMovieGenres value) setMovieGenres,
     required TResult Function(Refresh value) refresh,
@@ -188,7 +181,6 @@ class _$InitImpl implements Init {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Init value)? init,
-    TResult? Function(FetchMovieGenreList value)? fetchMovieGenreList,
     TResult? Function(FetchMovieList value)? fetchMovieList,
     TResult? Function(SetMovieGenres value)? setMovieGenres,
     TResult? Function(Refresh value)? refresh,
@@ -200,7 +192,6 @@ class _$InitImpl implements Init {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Init value)? init,
-    TResult Function(FetchMovieGenreList value)? fetchMovieGenreList,
     TResult Function(FetchMovieList value)? fetchMovieList,
     TResult Function(SetMovieGenres value)? setMovieGenres,
     TResult Function(Refresh value)? refresh,
@@ -218,136 +209,12 @@ abstract class Init implements DiscoverEvent {
 }
 
 /// @nodoc
-abstract class _$$FetchMovieGenreListImplCopyWith<$Res> {
-  factory _$$FetchMovieGenreListImplCopyWith(_$FetchMovieGenreListImpl value,
-          $Res Function(_$FetchMovieGenreListImpl) then) =
-      __$$FetchMovieGenreListImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$FetchMovieGenreListImplCopyWithImpl<$Res>
-    extends _$DiscoverEventCopyWithImpl<$Res, _$FetchMovieGenreListImpl>
-    implements _$$FetchMovieGenreListImplCopyWith<$Res> {
-  __$$FetchMovieGenreListImplCopyWithImpl(_$FetchMovieGenreListImpl _value,
-      $Res Function(_$FetchMovieGenreListImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of DiscoverEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$FetchMovieGenreListImpl implements FetchMovieGenreList {
-  const _$FetchMovieGenreListImpl();
-
-  @override
-  String toString() {
-    return 'DiscoverEvent.fetchMovieGenreList()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$FetchMovieGenreListImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function() fetchMovieGenreList,
-    required TResult Function(int page) fetchMovieList,
-    required TResult Function(List<MovieGenre> movieGenres) setMovieGenres,
-    required TResult Function() refresh,
-  }) {
-    return fetchMovieGenreList();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function()? fetchMovieGenreList,
-    TResult? Function(int page)? fetchMovieList,
-    TResult? Function(List<MovieGenre> movieGenres)? setMovieGenres,
-    TResult? Function()? refresh,
-  }) {
-    return fetchMovieGenreList?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function()? fetchMovieGenreList,
-    TResult Function(int page)? fetchMovieList,
-    TResult Function(List<MovieGenre> movieGenres)? setMovieGenres,
-    TResult Function()? refresh,
-    required TResult orElse(),
-  }) {
-    if (fetchMovieGenreList != null) {
-      return fetchMovieGenreList();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(Init value) init,
-    required TResult Function(FetchMovieGenreList value) fetchMovieGenreList,
-    required TResult Function(FetchMovieList value) fetchMovieList,
-    required TResult Function(SetMovieGenres value) setMovieGenres,
-    required TResult Function(Refresh value) refresh,
-  }) {
-    return fetchMovieGenreList(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Init value)? init,
-    TResult? Function(FetchMovieGenreList value)? fetchMovieGenreList,
-    TResult? Function(FetchMovieList value)? fetchMovieList,
-    TResult? Function(SetMovieGenres value)? setMovieGenres,
-    TResult? Function(Refresh value)? refresh,
-  }) {
-    return fetchMovieGenreList?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(Init value)? init,
-    TResult Function(FetchMovieGenreList value)? fetchMovieGenreList,
-    TResult Function(FetchMovieList value)? fetchMovieList,
-    TResult Function(SetMovieGenres value)? setMovieGenres,
-    TResult Function(Refresh value)? refresh,
-    required TResult orElse(),
-  }) {
-    if (fetchMovieGenreList != null) {
-      return fetchMovieGenreList(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class FetchMovieGenreList implements DiscoverEvent {
-  const factory FetchMovieGenreList() = _$FetchMovieGenreListImpl;
-}
-
-/// @nodoc
 abstract class _$$FetchMovieListImplCopyWith<$Res> {
   factory _$$FetchMovieListImplCopyWith(_$FetchMovieListImpl value,
           $Res Function(_$FetchMovieListImpl) then) =
       __$$FetchMovieListImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({int page});
+  $Res call({int page, bool useDelay});
 }
 
 /// @nodoc
@@ -364,12 +231,17 @@ class __$$FetchMovieListImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? page = null,
+    Object? useDelay = null,
   }) {
     return _then(_$FetchMovieListImpl(
       page: null == page
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
               as int,
+      useDelay: null == useDelay
+          ? _value.useDelay
+          : useDelay // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -377,15 +249,18 @@ class __$$FetchMovieListImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$FetchMovieListImpl implements FetchMovieList {
-  const _$FetchMovieListImpl({this.page = 1});
+  const _$FetchMovieListImpl({this.page = 1, this.useDelay = false});
 
   @override
   @JsonKey()
   final int page;
+  @override
+  @JsonKey()
+  final bool useDelay;
 
   @override
   String toString() {
-    return 'DiscoverEvent.fetchMovieList(page: $page)';
+    return 'DiscoverEvent.fetchMovieList(page: $page, useDelay: $useDelay)';
   }
 
   @override
@@ -393,11 +268,13 @@ class _$FetchMovieListImpl implements FetchMovieList {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FetchMovieListImpl &&
-            (identical(other.page, page) || other.page == page));
+            (identical(other.page, page) || other.page == page) &&
+            (identical(other.useDelay, useDelay) ||
+                other.useDelay == useDelay));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, page);
+  int get hashCode => Object.hash(runtimeType, page, useDelay);
 
   /// Create a copy of DiscoverEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -412,38 +289,35 @@ class _$FetchMovieListImpl implements FetchMovieList {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function() fetchMovieGenreList,
-    required TResult Function(int page) fetchMovieList,
+    required TResult Function(int page, bool useDelay) fetchMovieList,
     required TResult Function(List<MovieGenre> movieGenres) setMovieGenres,
     required TResult Function() refresh,
   }) {
-    return fetchMovieList(page);
+    return fetchMovieList(page, useDelay);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function()? fetchMovieGenreList,
-    TResult? Function(int page)? fetchMovieList,
+    TResult? Function(int page, bool useDelay)? fetchMovieList,
     TResult? Function(List<MovieGenre> movieGenres)? setMovieGenres,
     TResult? Function()? refresh,
   }) {
-    return fetchMovieList?.call(page);
+    return fetchMovieList?.call(page, useDelay);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function()? fetchMovieGenreList,
-    TResult Function(int page)? fetchMovieList,
+    TResult Function(int page, bool useDelay)? fetchMovieList,
     TResult Function(List<MovieGenre> movieGenres)? setMovieGenres,
     TResult Function()? refresh,
     required TResult orElse(),
   }) {
     if (fetchMovieList != null) {
-      return fetchMovieList(page);
+      return fetchMovieList(page, useDelay);
     }
     return orElse();
   }
@@ -452,7 +326,6 @@ class _$FetchMovieListImpl implements FetchMovieList {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Init value) init,
-    required TResult Function(FetchMovieGenreList value) fetchMovieGenreList,
     required TResult Function(FetchMovieList value) fetchMovieList,
     required TResult Function(SetMovieGenres value) setMovieGenres,
     required TResult Function(Refresh value) refresh,
@@ -464,7 +337,6 @@ class _$FetchMovieListImpl implements FetchMovieList {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Init value)? init,
-    TResult? Function(FetchMovieGenreList value)? fetchMovieGenreList,
     TResult? Function(FetchMovieList value)? fetchMovieList,
     TResult? Function(SetMovieGenres value)? setMovieGenres,
     TResult? Function(Refresh value)? refresh,
@@ -476,7 +348,6 @@ class _$FetchMovieListImpl implements FetchMovieList {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Init value)? init,
-    TResult Function(FetchMovieGenreList value)? fetchMovieGenreList,
     TResult Function(FetchMovieList value)? fetchMovieList,
     TResult Function(SetMovieGenres value)? setMovieGenres,
     TResult Function(Refresh value)? refresh,
@@ -490,9 +361,11 @@ class _$FetchMovieListImpl implements FetchMovieList {
 }
 
 abstract class FetchMovieList implements DiscoverEvent {
-  const factory FetchMovieList({final int page}) = _$FetchMovieListImpl;
+  const factory FetchMovieList({final int page, final bool useDelay}) =
+      _$FetchMovieListImpl;
 
   int get page;
+  bool get useDelay;
 
   /// Create a copy of DiscoverEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -544,7 +417,7 @@ class _$SetMovieGenresImpl implements SetMovieGenres {
   @override
   List<MovieGenre> get movieGenres {
     if (_movieGenres is EqualUnmodifiableListView) return _movieGenres;
-    // ignore: implicit_dynamic_type
+// ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_movieGenres);
   }
 
@@ -579,8 +452,7 @@ class _$SetMovieGenresImpl implements SetMovieGenres {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function() fetchMovieGenreList,
-    required TResult Function(int page) fetchMovieList,
+    required TResult Function(int page, bool useDelay) fetchMovieList,
     required TResult Function(List<MovieGenre> movieGenres) setMovieGenres,
     required TResult Function() refresh,
   }) {
@@ -591,8 +463,7 @@ class _$SetMovieGenresImpl implements SetMovieGenres {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function()? fetchMovieGenreList,
-    TResult? Function(int page)? fetchMovieList,
+    TResult? Function(int page, bool useDelay)? fetchMovieList,
     TResult? Function(List<MovieGenre> movieGenres)? setMovieGenres,
     TResult? Function()? refresh,
   }) {
@@ -603,8 +474,7 @@ class _$SetMovieGenresImpl implements SetMovieGenres {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function()? fetchMovieGenreList,
-    TResult Function(int page)? fetchMovieList,
+    TResult Function(int page, bool useDelay)? fetchMovieList,
     TResult Function(List<MovieGenre> movieGenres)? setMovieGenres,
     TResult Function()? refresh,
     required TResult orElse(),
@@ -619,7 +489,6 @@ class _$SetMovieGenresImpl implements SetMovieGenres {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Init value) init,
-    required TResult Function(FetchMovieGenreList value) fetchMovieGenreList,
     required TResult Function(FetchMovieList value) fetchMovieList,
     required TResult Function(SetMovieGenres value) setMovieGenres,
     required TResult Function(Refresh value) refresh,
@@ -631,7 +500,6 @@ class _$SetMovieGenresImpl implements SetMovieGenres {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Init value)? init,
-    TResult? Function(FetchMovieGenreList value)? fetchMovieGenreList,
     TResult? Function(FetchMovieList value)? fetchMovieList,
     TResult? Function(SetMovieGenres value)? setMovieGenres,
     TResult? Function(Refresh value)? refresh,
@@ -643,7 +511,6 @@ class _$SetMovieGenresImpl implements SetMovieGenres {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Init value)? init,
-    TResult Function(FetchMovieGenreList value)? fetchMovieGenreList,
     TResult Function(FetchMovieList value)? fetchMovieList,
     TResult Function(SetMovieGenres value)? setMovieGenres,
     TResult Function(Refresh value)? refresh,
@@ -711,8 +578,7 @@ class _$RefreshImpl implements Refresh {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function() fetchMovieGenreList,
-    required TResult Function(int page) fetchMovieList,
+    required TResult Function(int page, bool useDelay) fetchMovieList,
     required TResult Function(List<MovieGenre> movieGenres) setMovieGenres,
     required TResult Function() refresh,
   }) {
@@ -723,8 +589,7 @@ class _$RefreshImpl implements Refresh {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function()? fetchMovieGenreList,
-    TResult? Function(int page)? fetchMovieList,
+    TResult? Function(int page, bool useDelay)? fetchMovieList,
     TResult? Function(List<MovieGenre> movieGenres)? setMovieGenres,
     TResult? Function()? refresh,
   }) {
@@ -735,8 +600,7 @@ class _$RefreshImpl implements Refresh {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function()? fetchMovieGenreList,
-    TResult Function(int page)? fetchMovieList,
+    TResult Function(int page, bool useDelay)? fetchMovieList,
     TResult Function(List<MovieGenre> movieGenres)? setMovieGenres,
     TResult Function()? refresh,
     required TResult orElse(),
@@ -751,7 +615,6 @@ class _$RefreshImpl implements Refresh {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Init value) init,
-    required TResult Function(FetchMovieGenreList value) fetchMovieGenreList,
     required TResult Function(FetchMovieList value) fetchMovieList,
     required TResult Function(SetMovieGenres value) setMovieGenres,
     required TResult Function(Refresh value) refresh,
@@ -763,7 +626,6 @@ class _$RefreshImpl implements Refresh {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Init value)? init,
-    TResult? Function(FetchMovieGenreList value)? fetchMovieGenreList,
     TResult? Function(FetchMovieList value)? fetchMovieList,
     TResult? Function(SetMovieGenres value)? setMovieGenres,
     TResult? Function(Refresh value)? refresh,
@@ -775,7 +637,6 @@ class _$RefreshImpl implements Refresh {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Init value)? init,
-    TResult Function(FetchMovieGenreList value)? fetchMovieGenreList,
     TResult Function(FetchMovieList value)? fetchMovieList,
     TResult Function(SetMovieGenres value)? setMovieGenres,
     TResult Function(Refresh value)? refresh,

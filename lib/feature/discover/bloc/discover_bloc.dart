@@ -17,25 +17,10 @@ class DiscoverBloc extends Bloc<DiscoverEvent, DiscoverState> {
     this._getMovieGenresUseCase,
     this._getMoviesByGenreUseCase,
   ) : super(const Initial()) {
-    on<DiscoverEvent>((event, emitter) async {
-      switch (event) {
-        case Init():
-          await _handleInit(event, emitter);
-        case Refresh():
-          await _handleRefresh(event, emitter);
-        case SetMovieGenres():
-          await _handleSetMovieGenre(event, emitter);
-        default:
-          break;
-      }
-    });
-
-    on<FetchMovieList>(
-      (event, emitter) async {
-        await _handleFetchMovieList(event, emitter);
-      },
-      transformer: restartable(),
-    );
+    on<Init>(_handleInit);
+    on<Refresh>(_handleRefresh);
+    on<SetMovieGenres>(_handleSetMovieGenre);
+    on<FetchMovieList>(_handleFetchMovieList, transformer: restartable());
   }
 
   final GetMovieGenresUseCase _getMovieGenresUseCase;
@@ -47,9 +32,6 @@ class DiscoverBloc extends Bloc<DiscoverEvent, DiscoverState> {
   ) async {
     emitter(const Loading());
 
-    //simulate a little delay for better visual experience
-    await Future<void>.delayed(const Duration(seconds: 1));
-
     try {
       final genres = await _getMovieGenresUseCase.execute();
 
@@ -60,7 +42,7 @@ class DiscoverBloc extends Bloc<DiscoverEvent, DiscoverState> {
         ),
       );
 
-      add(const FetchMovieList());
+      add(const FetchMovieList(useDelay: true));
     } catch (e) {
       emitter(
         Error(
@@ -83,23 +65,35 @@ class DiscoverBloc extends Bloc<DiscoverEvent, DiscoverState> {
     emitter(
       currentState.copyWith(
         isMovieListLoading: true,
+        movieListError: null,
       ),
     );
 
+    if (event.useDelay) {
+      //simulate a little delay for better visual experience
+      await Future<void>.delayed(const Duration(milliseconds: 500));
+    }
+
     try {
       final movies = await _getMoviesByGenreUseCase.execute(
-          currentState.selectedMovieGenres, event.page);
+        currentState.selectedMovieGenres,
+        event.page,
+      );
 
       emitter(
         currentState.copyWith(
           movies:
               event.page == 1 ? movies : [...currentState.movies, ...movies],
           isMovieListLoading: false,
+          lastFetchMoviesPage: event.page,
+          lastFetchMoviesSize: movies.length,
+          movieListError: null,
         ),
       );
     } catch (e) {
       emitter(
         currentState.copyWith(
+          isMovieListLoading: false,
           movieListError: e.toString(),
         ),
       );
@@ -117,12 +111,13 @@ class DiscoverBloc extends Bloc<DiscoverEvent, DiscoverState> {
     }
 
     emitter(
-      currentState.copyWith(
+      Loaded(
+        movieGenres: currentState.movieGenres,
         selectedMovieGenres: event.movieGenres,
       ),
     );
 
-    add(const FetchMovieList());
+    add(const FetchMovieList(useDelay: true));
   }
 
   FutureOr<void> _handleRefresh(
@@ -134,7 +129,7 @@ class DiscoverBloc extends Bloc<DiscoverEvent, DiscoverState> {
     emitter(const Loading());
 
     //simulate a little delay for better visual experience
-    await Future<void>.delayed(const Duration(seconds: 1));
+    await Future<void>.delayed(const Duration(milliseconds: 500));
 
     try {
       final genres = await _getMovieGenresUseCase.execute();
@@ -149,7 +144,7 @@ class DiscoverBloc extends Bloc<DiscoverEvent, DiscoverState> {
         ),
       );
 
-      add(const FetchMovieList());
+      add(const FetchMovieList(useDelay: true));
     } catch (e) {
       emitter(
         Error(

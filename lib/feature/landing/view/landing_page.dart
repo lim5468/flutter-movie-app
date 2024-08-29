@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/di/getit.dart';
-import 'package:movie_app/feature/discover/discover.dart';
-import 'package:movie_app/feature/home/view/home_page.dart';
+import 'package:movie_app/feature/discover/discover.dart' as discover;
+import 'package:movie_app/feature/home/home.dart' as home;
 import 'package:movie_app/feature/search/view/search_page.dart';
 import 'package:movie_app/feature/settings/view/settings_page.dart';
 import 'package:movie_app/utils/extensions/string_ext.dart';
@@ -18,11 +18,15 @@ class _LandingPageState extends State<LandingPage> {
   int _selectedIndex = 0;
 
   final List<Widget> _pages = [
-    const HomePage(),
-    BlocProvider<DiscoverBloc>(
+    BlocProvider<home.HomeBloc>(
       create: (BuildContext context) =>
-          getIt.get<DiscoverBloc>()..add(const Init()),
-      child: const DiscoverPage(),
+          getIt.get<home.HomeBloc>()..add(const home.Init()),
+      child: const home.HomePage(),
+    ),
+    BlocProvider<discover.DiscoverBloc>(
+      create: (BuildContext context) =>
+          getIt.get<discover.DiscoverBloc>()..add(const discover.Init()),
+      child: const discover.DiscoverPage(),
     ),
     const SearchPage(),
     const SettingsPage(),

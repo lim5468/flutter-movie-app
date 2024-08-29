@@ -21,6 +21,7 @@ import '../domain/usecase/get_movies_by_category_usecase.dart' as _i696;
 import '../domain/usecase/get_movies_by_genre_usecase.dart' as _i356;
 import '../domain/usecase/search_movies_usecase.dart' as _i565;
 import '../feature/discover/bloc/discover_bloc.dart' as _i741;
+import '../feature/home/bloc/home_bloc.dart' as _i1071;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -33,6 +34,12 @@ extension GetItInjectableX on _i174.GetIt {
       environment,
       environmentFilter,
     );
+    gh.factory<_i46.GetMovieVideosUseCase>(
+        () => _i46.GetMovieVideosUseCase(gh<_i721.MovieRepository>()));
+    gh.factory<_i249.GetMovieCastsUseCase>(
+        () => _i249.GetMovieCastsUseCase(gh<_i721.MovieRepository>()));
+    gh.factory<_i751.GetMovieGenresUseCase>(
+        () => _i751.GetMovieGenresUseCase(gh<_i721.MovieRepository>()));
     gh.factory<_i565.SearchMoviesUseCase>(
         () => _i565.SearchMoviesUseCase(gh<_i721.MovieRepository>()));
     gh.factory<_i103.GetMovieDetailsUseCase>(
@@ -41,14 +48,10 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i356.GetMoviesByGenreUseCase(gh<_i721.MovieRepository>()));
     gh.factory<_i696.GetMoviesByCategoryUseCase>(
         () => _i696.GetMoviesByCategoryUseCase(gh<_i721.MovieRepository>()));
-    gh.factory<_i46.GetMovieVideosUseCase>(
-        () => _i46.GetMovieVideosUseCase(gh<_i721.MovieRepository>()));
-    gh.factory<_i249.GetMovieCastsUseCase>(
-        () => _i249.GetMovieCastsUseCase(gh<_i721.MovieRepository>()));
-    gh.factory<_i751.GetMovieGenresUseCase>(
-        () => _i751.GetMovieGenresUseCase(gh<_i721.MovieRepository>()));
     gh.factory<_i883.GetMoviePostersUseCase>(
         () => _i883.GetMoviePostersUseCase(gh<_i721.MovieRepository>()));
+    gh.factory<_i1071.HomeBloc>(
+        () => _i1071.HomeBloc(gh<_i696.GetMoviesByCategoryUseCase>()));
     gh.factory<_i741.DiscoverBloc>(() => _i741.DiscoverBloc(
           gh<_i751.GetMovieGenresUseCase>(),
           gh<_i356.GetMoviesByGenreUseCase>(),

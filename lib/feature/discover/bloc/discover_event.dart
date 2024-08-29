@@ -7,10 +7,9 @@ part 'discover_event.freezed.dart';
 sealed class DiscoverEvent with _$DiscoverEvent {
   const factory DiscoverEvent.init() = Init;
 
-  const factory DiscoverEvent.fetchMovieGenreList() = FetchMovieGenreList;
-
   const factory DiscoverEvent.fetchMovieList({
     @Default(1) int page,
+    @Default(false) bool useDelay,
   }) = FetchMovieList;
 
   const factory DiscoverEvent.setMovieGenres(

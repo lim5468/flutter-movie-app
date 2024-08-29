@@ -17,6 +17,8 @@ sealed class DiscoverState with _$DiscoverState {
     String? movieGenreListError,
     String? movieListError,
     @Default([]) List<Movie> movies,
+    int? lastFetchMoviesSize,
+    int? lastFetchMoviesPage,
   }) = Loaded;
 
   const factory DiscoverState.error({required String message}) = Error;

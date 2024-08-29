@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:movie_app/constants.dart';
 
 part 'movie.freezed.dart';
 part 'movie.g.dart';
@@ -15,4 +16,8 @@ class Movie with _$Movie {
   }) = _Movie;
 
   factory Movie.fromJson(Map<String, dynamic> json) => _$MovieFromJson(json);
+}
+
+extension MovieExt on Movie {
+  String get posterUrl => '${Constants.movieDbPosterImageBaseUrl}$posterPath';
 }

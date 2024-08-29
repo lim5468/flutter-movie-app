@@ -29,10 +29,12 @@ class _FilterChipsViewState extends State<FilterChipsView> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Wrap(
-        spacing: 5.0,
+        spacing: 10,
         children: widget.genres
             .map((genre) => FilterChip(
+                  key: ValueKey(genre.name),
                   label: Text(
                     genre.name,
                     style: Theme.of(context).textTheme.labelLarge,
