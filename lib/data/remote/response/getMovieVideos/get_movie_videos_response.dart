@@ -8,7 +8,7 @@ class GetMovieVideosResponse with _$GetMovieVideosResponse {
   @JsonSerializable(explicitToJson: true)
   const factory GetMovieVideosResponse({
     required int id,
-    @JsonKey(name: 'results') required List<Video> list,
+    @JsonKey(name: 'results') @Default([]) List<Video> list,
   }) = _GetMovieVideosResponse;
 
   factory GetMovieVideosResponse.fromJson(Map<String, dynamic> json) =>
@@ -20,9 +20,9 @@ class Video with _$Video {
   @JsonSerializable(explicitToJson: true)
   const factory Video({
     required int id,
-    @JsonKey(name: 'name') required String name,
-    @JsonKey(name: 'site') required String site,
-    @JsonKey(name: 'key') required String key,
+    @JsonKey(name: 'name') required String? name,
+    @JsonKey(name: 'site') required String? site,
+    @JsonKey(name: 'key') required String? key,
   }) = _Video;
 
   factory Video.fromJson(Map<String, dynamic> json) => _$VideoFromJson(json);

@@ -23,9 +23,9 @@ mixin _$GetMovieListResponse {
   @JsonKey(name: 'results')
   List<Movie> get results => throw _privateConstructorUsedError;
   @JsonKey(name: 'total_pages')
-  int get totalPages => throw _privateConstructorUsedError;
+  int? get totalPages => throw _privateConstructorUsedError;
   @JsonKey(name: 'page')
-  int get page => throw _privateConstructorUsedError;
+  int? get page => throw _privateConstructorUsedError;
 
   /// Serializes this GetMovieListResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -45,8 +45,8 @@ abstract class $GetMovieListResponseCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'results') List<Movie> results,
-      @JsonKey(name: 'total_pages') int totalPages,
-      @JsonKey(name: 'page') int page});
+      @JsonKey(name: 'total_pages') int? totalPages,
+      @JsonKey(name: 'page') int? page});
 }
 
 /// @nodoc
@@ -66,22 +66,22 @@ class _$GetMovieListResponseCopyWithImpl<$Res,
   @override
   $Res call({
     Object? results = null,
-    Object? totalPages = null,
-    Object? page = null,
+    Object? totalPages = freezed,
+    Object? page = freezed,
   }) {
     return _then(_value.copyWith(
       results: null == results
           ? _value.results
           : results // ignore: cast_nullable_to_non_nullable
               as List<Movie>,
-      totalPages: null == totalPages
+      totalPages: freezed == totalPages
           ? _value.totalPages
           : totalPages // ignore: cast_nullable_to_non_nullable
-              as int,
-      page: null == page
+              as int?,
+      page: freezed == page
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ) as $Val);
   }
 }
@@ -96,8 +96,8 @@ abstract class _$$GetMovieListResponseImplCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'results') List<Movie> results,
-      @JsonKey(name: 'total_pages') int totalPages,
-      @JsonKey(name: 'page') int page});
+      @JsonKey(name: 'total_pages') int? totalPages,
+      @JsonKey(name: 'page') int? page});
 }
 
 /// @nodoc
@@ -114,22 +114,22 @@ class __$$GetMovieListResponseImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? results = null,
-    Object? totalPages = null,
-    Object? page = null,
+    Object? totalPages = freezed,
+    Object? page = freezed,
   }) {
     return _then(_$GetMovieListResponseImpl(
       results: null == results
           ? _value._results
           : results // ignore: cast_nullable_to_non_nullable
               as List<Movie>,
-      totalPages: null == totalPages
+      totalPages: freezed == totalPages
           ? _value.totalPages
           : totalPages // ignore: cast_nullable_to_non_nullable
-              as int,
-      page: null == page
+              as int?,
+      page: freezed == page
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ));
   }
 }
@@ -139,7 +139,7 @@ class __$$GetMovieListResponseImplCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$GetMovieListResponseImpl implements _GetMovieListResponse {
   const _$GetMovieListResponseImpl(
-      {@JsonKey(name: 'results') required final List<Movie> results,
+      {@JsonKey(name: 'results') final List<Movie> results = const [],
       @JsonKey(name: 'total_pages') required this.totalPages,
       @JsonKey(name: 'page') required this.page})
       : _results = results;
@@ -158,10 +158,10 @@ class _$GetMovieListResponseImpl implements _GetMovieListResponse {
 
   @override
   @JsonKey(name: 'total_pages')
-  final int totalPages;
+  final int? totalPages;
   @override
   @JsonKey(name: 'page')
-  final int page;
+  final int? page;
 
   @override
   String toString() {
@@ -204,9 +204,9 @@ class _$GetMovieListResponseImpl implements _GetMovieListResponse {
 
 abstract class _GetMovieListResponse implements GetMovieListResponse {
   const factory _GetMovieListResponse(
-          {@JsonKey(name: 'results') required final List<Movie> results,
-          @JsonKey(name: 'total_pages') required final int totalPages,
-          @JsonKey(name: 'page') required final int page}) =
+          {@JsonKey(name: 'results') final List<Movie> results,
+          @JsonKey(name: 'total_pages') required final int? totalPages,
+          @JsonKey(name: 'page') required final int? page}) =
       _$GetMovieListResponseImpl;
 
   factory _GetMovieListResponse.fromJson(Map<String, dynamic> json) =
@@ -217,10 +217,10 @@ abstract class _GetMovieListResponse implements GetMovieListResponse {
   List<Movie> get results;
   @override
   @JsonKey(name: 'total_pages')
-  int get totalPages;
+  int? get totalPages;
   @override
   @JsonKey(name: 'page')
-  int get page;
+  int? get page;
 
   /// Create a copy of GetMovieListResponse
   /// with the given fields replaced by the non-null parameter values.

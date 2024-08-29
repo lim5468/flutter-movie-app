@@ -8,10 +8,10 @@ part of 'movie.dart';
 
 _$MovieImpl _$$MovieImplFromJson(Map<String, dynamic> json) => _$MovieImpl(
       id: (json['id'] as num).toInt(),
-      title: json['title'] as String,
-      backdropPath: json['backdrop_path'] as String,
-      posterPath: json['poster_path'] as String,
-      releaseDate: json['release_date'] as String,
+      title: json['title'] as String?,
+      backdropPath: json['backdrop_path'] as String?,
+      posterPath: json['poster_path'] as String?,
+      releaseDate: json['release_date'] as String?,
     );
 
 Map<String, dynamic> _$$MovieImplToJson(_$MovieImpl instance) =>

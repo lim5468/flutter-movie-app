@@ -22,7 +22,7 @@ abstract class MovieApiService {
   @GET('/discover/movie')
   Future<GetMovieListResponse> getMoviesByGenre({
     @Query('api_key') required String apiKey,
-    @Query('with_genres') required int genreId,
+    @Query('with_genres') required String genreIds,
     @Query('language') String? language = 'en-US',
     @Query('sort_by') String? sortBy = 'primary_release_date.des',
     @Query('page') int? page,

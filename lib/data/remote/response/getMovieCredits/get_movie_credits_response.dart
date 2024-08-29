@@ -7,8 +7,7 @@ part 'get_movie_credits_response.g.dart';
 class GetMovieCreditsResponse with _$GetMovieCreditsResponse {
   @JsonSerializable(explicitToJson: true)
   const factory GetMovieCreditsResponse({
-    required int id,
-    @JsonKey(name: 'cast') required List<Cast> list,
+    @JsonKey(name: 'cast') @Default([]) List<Cast> list,
   }) = _GetMovieCreditsResponse;
 
   factory GetMovieCreditsResponse.fromJson(Map<String, dynamic> json) =>
@@ -19,9 +18,8 @@ class GetMovieCreditsResponse with _$GetMovieCreditsResponse {
 class Cast with _$Cast {
   @JsonSerializable(explicitToJson: true)
   const factory Cast({
-    required int id,
-    @JsonKey(name: 'name') required String name,
-    @JsonKey(name: 'profile_path') required String profilePath,
+    @JsonKey(name: 'name') required String? name,
+    @JsonKey(name: 'profile_path') required String? profilePath,
   }) = _Cast;
 
   factory Cast.fromJson(Map<String, dynamic> json) => _$CastFromJson(json);

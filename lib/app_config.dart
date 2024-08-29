@@ -41,7 +41,7 @@ class DevAppConfig implements AppConfig {
   Duration get receiveTimeout => const Duration(seconds: 30);
 
   @override
-  String get movieDbApiKey => 'xxx';
+  String get movieDbApiKey => 'e6fac24d22daa4a03f3427b9e229a0b9';
 }
 
 class StagingAppConfig implements AppConfig {

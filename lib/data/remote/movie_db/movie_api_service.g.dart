@@ -64,7 +64,7 @@ class _MovieApiService implements MovieApiService {
   @override
   Future<GetMovieListResponse> getMoviesByGenre({
     required String apiKey,
-    required int genreId,
+    required String genreIds,
     String? language = 'en-US',
     String? sortBy = 'primary_release_date.des',
     int? page,
@@ -72,7 +72,7 @@ class _MovieApiService implements MovieApiService {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'api_key': apiKey,
-      r'with_genres': genreId,
+      r'with_genres': genreIds,
       r'language': language,
       r'sort_by': sortBy,
       r'page': page,

@@ -20,6 +20,7 @@ import '../domain/usecase/get_movie_videos_usecase.dart' as _i46;
 import '../domain/usecase/get_movies_by_category_usecase.dart' as _i696;
 import '../domain/usecase/get_movies_by_genre_usecase.dart' as _i356;
 import '../domain/usecase/search_movies_usecase.dart' as _i565;
+import '../feature/discover/bloc/discover_bloc.dart' as _i741;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -48,6 +49,10 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i751.GetMovieGenresUseCase(gh<_i721.MovieRepository>()));
     gh.factory<_i883.GetMoviePostersUseCase>(
         () => _i883.GetMoviePostersUseCase(gh<_i721.MovieRepository>()));
+    gh.factory<_i741.DiscoverBloc>(() => _i741.DiscoverBloc(
+          gh<_i751.GetMovieGenresUseCase>(),
+          gh<_i356.GetMoviesByGenreUseCase>(),
+        ));
     return this;
   }
 }

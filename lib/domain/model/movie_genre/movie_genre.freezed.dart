@@ -20,7 +20,9 @@ MovieGenre _$MovieGenreFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$MovieGenre {
+  @JsonKey(name: 'id')
   int get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'name')
   String get name => throw _privateConstructorUsedError;
 
   /// Serializes this MovieGenre to a JSON map.
@@ -39,7 +41,7 @@ abstract class $MovieGenreCopyWith<$Res> {
           MovieGenre value, $Res Function(MovieGenre) then) =
       _$MovieGenreCopyWithImpl<$Res, MovieGenre>;
   @useResult
-  $Res call({int id, String name});
+  $Res call({@JsonKey(name: 'id') int id, @JsonKey(name: 'name') String name});
 }
 
 /// @nodoc
@@ -81,7 +83,7 @@ abstract class _$$MovieGenreImplCopyWith<$Res>
       __$$MovieGenreImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String name});
+  $Res call({@JsonKey(name: 'id') int id, @JsonKey(name: 'name') String name});
 }
 
 /// @nodoc
@@ -117,14 +119,18 @@ class __$$MovieGenreImplCopyWithImpl<$Res>
 
 @JsonSerializable(explicitToJson: true)
 class _$MovieGenreImpl implements _MovieGenre {
-  const _$MovieGenreImpl({required this.id, required this.name});
+  const _$MovieGenreImpl(
+      {@JsonKey(name: 'id') required this.id,
+      @JsonKey(name: 'name') required this.name});
 
   factory _$MovieGenreImpl.fromJson(Map<String, dynamic> json) =>
       _$$MovieGenreImplFromJson(json);
 
   @override
+  @JsonKey(name: 'id')
   final int id;
   @override
+  @JsonKey(name: 'name')
   final String name;
 
   @override
@@ -163,14 +169,17 @@ class _$MovieGenreImpl implements _MovieGenre {
 
 abstract class _MovieGenre implements MovieGenre {
   const factory _MovieGenre(
-      {required final int id, required final String name}) = _$MovieGenreImpl;
+      {@JsonKey(name: 'id') required final int id,
+      @JsonKey(name: 'name') required final String name}) = _$MovieGenreImpl;
 
   factory _MovieGenre.fromJson(Map<String, dynamic> json) =
       _$MovieGenreImpl.fromJson;
 
   @override
+  @JsonKey(name: 'id')
   int get id;
   @override
+  @JsonKey(name: 'name')
   String get name;
 
   /// Create a copy of MovieGenre

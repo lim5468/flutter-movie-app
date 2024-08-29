@@ -20,15 +20,16 @@ Movie _$MovieFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Movie {
+  @JsonKey(name: 'id')
   int get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'title')
-  String get title => throw _privateConstructorUsedError;
+  String? get title => throw _privateConstructorUsedError;
   @JsonKey(name: 'backdrop_path')
-  String get backdropPath => throw _privateConstructorUsedError;
+  String? get backdropPath => throw _privateConstructorUsedError;
   @JsonKey(name: 'poster_path')
-  String get posterPath => throw _privateConstructorUsedError;
+  String? get posterPath => throw _privateConstructorUsedError;
   @JsonKey(name: 'release_date')
-  String get releaseDate => throw _privateConstructorUsedError;
+  String? get releaseDate => throw _privateConstructorUsedError;
 
   /// Serializes this Movie to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -45,11 +46,11 @@ abstract class $MovieCopyWith<$Res> {
       _$MovieCopyWithImpl<$Res, Movie>;
   @useResult
   $Res call(
-      {int id,
-      @JsonKey(name: 'title') String title,
-      @JsonKey(name: 'backdrop_path') String backdropPath,
-      @JsonKey(name: 'poster_path') String posterPath,
-      @JsonKey(name: 'release_date') String releaseDate});
+      {@JsonKey(name: 'id') int id,
+      @JsonKey(name: 'title') String? title,
+      @JsonKey(name: 'backdrop_path') String? backdropPath,
+      @JsonKey(name: 'poster_path') String? posterPath,
+      @JsonKey(name: 'release_date') String? releaseDate});
 }
 
 /// @nodoc
@@ -68,32 +69,32 @@ class _$MovieCopyWithImpl<$Res, $Val extends Movie>
   @override
   $Res call({
     Object? id = null,
-    Object? title = null,
-    Object? backdropPath = null,
-    Object? posterPath = null,
-    Object? releaseDate = null,
+    Object? title = freezed,
+    Object? backdropPath = freezed,
+    Object? posterPath = freezed,
+    Object? releaseDate = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      title: null == title
+      title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      backdropPath: null == backdropPath
+              as String?,
+      backdropPath: freezed == backdropPath
           ? _value.backdropPath
           : backdropPath // ignore: cast_nullable_to_non_nullable
-              as String,
-      posterPath: null == posterPath
+              as String?,
+      posterPath: freezed == posterPath
           ? _value.posterPath
           : posterPath // ignore: cast_nullable_to_non_nullable
-              as String,
-      releaseDate: null == releaseDate
+              as String?,
+      releaseDate: freezed == releaseDate
           ? _value.releaseDate
           : releaseDate // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -106,11 +107,11 @@ abstract class _$$MovieImplCopyWith<$Res> implements $MovieCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {int id,
-      @JsonKey(name: 'title') String title,
-      @JsonKey(name: 'backdrop_path') String backdropPath,
-      @JsonKey(name: 'poster_path') String posterPath,
-      @JsonKey(name: 'release_date') String releaseDate});
+      {@JsonKey(name: 'id') int id,
+      @JsonKey(name: 'title') String? title,
+      @JsonKey(name: 'backdrop_path') String? backdropPath,
+      @JsonKey(name: 'poster_path') String? posterPath,
+      @JsonKey(name: 'release_date') String? releaseDate});
 }
 
 /// @nodoc
@@ -127,32 +128,32 @@ class __$$MovieImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? title = null,
-    Object? backdropPath = null,
-    Object? posterPath = null,
-    Object? releaseDate = null,
+    Object? title = freezed,
+    Object? backdropPath = freezed,
+    Object? posterPath = freezed,
+    Object? releaseDate = freezed,
   }) {
     return _then(_$MovieImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      title: null == title
+      title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      backdropPath: null == backdropPath
+              as String?,
+      backdropPath: freezed == backdropPath
           ? _value.backdropPath
           : backdropPath // ignore: cast_nullable_to_non_nullable
-              as String,
-      posterPath: null == posterPath
+              as String?,
+      posterPath: freezed == posterPath
           ? _value.posterPath
           : posterPath // ignore: cast_nullable_to_non_nullable
-              as String,
-      releaseDate: null == releaseDate
+              as String?,
+      releaseDate: freezed == releaseDate
           ? _value.releaseDate
           : releaseDate // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -162,7 +163,7 @@ class __$$MovieImplCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$MovieImpl implements _Movie {
   const _$MovieImpl(
-      {required this.id,
+      {@JsonKey(name: 'id') required this.id,
       @JsonKey(name: 'title') required this.title,
       @JsonKey(name: 'backdrop_path') required this.backdropPath,
       @JsonKey(name: 'poster_path') required this.posterPath,
@@ -172,19 +173,20 @@ class _$MovieImpl implements _Movie {
       _$$MovieImplFromJson(json);
 
   @override
+  @JsonKey(name: 'id')
   final int id;
   @override
   @JsonKey(name: 'title')
-  final String title;
+  final String? title;
   @override
   @JsonKey(name: 'backdrop_path')
-  final String backdropPath;
+  final String? backdropPath;
   @override
   @JsonKey(name: 'poster_path')
-  final String posterPath;
+  final String? posterPath;
   @override
   @JsonKey(name: 'release_date')
-  final String releaseDate;
+  final String? releaseDate;
 
   @override
   String toString() {
@@ -229,29 +231,30 @@ class _$MovieImpl implements _Movie {
 
 abstract class _Movie implements Movie {
   const factory _Movie(
-          {required final int id,
-          @JsonKey(name: 'title') required final String title,
-          @JsonKey(name: 'backdrop_path') required final String backdropPath,
-          @JsonKey(name: 'poster_path') required final String posterPath,
-          @JsonKey(name: 'release_date') required final String releaseDate}) =
+          {@JsonKey(name: 'id') required final int id,
+          @JsonKey(name: 'title') required final String? title,
+          @JsonKey(name: 'backdrop_path') required final String? backdropPath,
+          @JsonKey(name: 'poster_path') required final String? posterPath,
+          @JsonKey(name: 'release_date') required final String? releaseDate}) =
       _$MovieImpl;
 
   factory _Movie.fromJson(Map<String, dynamic> json) = _$MovieImpl.fromJson;
 
   @override
+  @JsonKey(name: 'id')
   int get id;
   @override
   @JsonKey(name: 'title')
-  String get title;
+  String? get title;
   @override
   @JsonKey(name: 'backdrop_path')
-  String get backdropPath;
+  String? get backdropPath;
   @override
   @JsonKey(name: 'poster_path')
-  String get posterPath;
+  String? get posterPath;
   @override
   @JsonKey(name: 'release_date')
-  String get releaseDate;
+  String? get releaseDate;
 
   /// Create a copy of Movie
   /// with the given fields replaced by the non-null parameter values.

@@ -10,9 +10,10 @@ _$GetMovieVideosResponseImpl _$$GetMovieVideosResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$GetMovieVideosResponseImpl(
       id: (json['id'] as num).toInt(),
-      list: (json['results'] as List<dynamic>)
-          .map((e) => Video.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      list: (json['results'] as List<dynamic>?)
+              ?.map((e) => Video.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$$GetMovieVideosResponseImplToJson(
@@ -24,9 +25,9 @@ Map<String, dynamic> _$$GetMovieVideosResponseImplToJson(
 
 _$VideoImpl _$$VideoImplFromJson(Map<String, dynamic> json) => _$VideoImpl(
       id: (json['id'] as num).toInt(),
-      name: json['name'] as String,
-      site: json['site'] as String,
-      key: json['key'] as String,
+      name: json['name'] as String?,
+      site: json['site'] as String?,
+      key: json['key'] as String?,
     );
 
 Map<String, dynamic> _$$VideoImplToJson(_$VideoImpl instance) =>

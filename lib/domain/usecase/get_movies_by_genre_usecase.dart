@@ -9,7 +9,7 @@ class GetMoviesByGenreUseCase {
 
   final MovieRepository _movieRepository;
 
-  Future<List<Movie>> execute(MovieGenre genre, int page) async {
-    return _movieRepository.getMoviesByGenre(genre, page);
+  Future<List<Movie>> execute(List<MovieGenre> genres, int page) async {
+    return _movieRepository.getMoviesByGenres(genres, page);
   }
 }

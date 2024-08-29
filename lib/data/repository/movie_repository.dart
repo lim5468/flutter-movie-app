@@ -9,7 +9,7 @@ import 'package:movie_app/domain/model/movie_genre/movie_genre.dart';
 abstract class MovieRepository {
   Future<List<MovieGenre>> getMoviesGenreList();
 
-  Future<List<Movie>> getMoviesByGenre(MovieGenre genre, int page);
+  Future<List<Movie>> getMoviesByGenres(List<MovieGenre> genres, int page);
 
   Future<List<Movie>> getMoviesByCategory(MovieCategory category, int page);
 

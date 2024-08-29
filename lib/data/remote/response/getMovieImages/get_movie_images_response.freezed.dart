@@ -157,9 +157,9 @@ class __$$GetMovieImagesResponseImplCopyWithImpl<$Res>
 class _$GetMovieImagesResponseImpl implements _GetMovieImagesResponse {
   const _$GetMovieImagesResponseImpl(
       {required this.id,
-      @JsonKey(name: 'backdrops') required final List<MovieImage> backdrops,
-      @JsonKey(name: 'posters') required final List<MovieImage> posters,
-      @JsonKey(name: 'logos') required final List<MovieImage> logos})
+      @JsonKey(name: 'backdrops') final List<MovieImage> backdrops = const [],
+      @JsonKey(name: 'posters') final List<MovieImage> posters = const [],
+      @JsonKey(name: 'logos') final List<MovieImage> logos = const []})
       : _backdrops = backdrops,
         _posters = posters,
         _logos = logos;
@@ -242,9 +242,9 @@ class _$GetMovieImagesResponseImpl implements _GetMovieImagesResponse {
 abstract class _GetMovieImagesResponse implements GetMovieImagesResponse {
   const factory _GetMovieImagesResponse(
           {required final int id,
-          @JsonKey(name: 'backdrops') required final List<MovieImage> backdrops,
-          @JsonKey(name: 'posters') required final List<MovieImage> posters,
-          @JsonKey(name: 'logos') required final List<MovieImage> logos}) =
+          @JsonKey(name: 'backdrops') final List<MovieImage> backdrops,
+          @JsonKey(name: 'posters') final List<MovieImage> posters,
+          @JsonKey(name: 'logos') final List<MovieImage> logos}) =
       _$GetMovieImagesResponseImpl;
 
   factory _GetMovieImagesResponse.fromJson(Map<String, dynamic> json) =
@@ -278,13 +278,13 @@ MovieImage _$MovieImageFromJson(Map<String, dynamic> json) {
 mixin _$MovieImage {
   int get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'aspect_ratio')
-  int get aspectRatio => throw _privateConstructorUsedError;
+  int? get aspectRatio => throw _privateConstructorUsedError;
   @JsonKey(name: 'height')
-  int get height => throw _privateConstructorUsedError;
+  int? get height => throw _privateConstructorUsedError;
   @JsonKey(name: 'width')
-  int get width => throw _privateConstructorUsedError;
+  int? get width => throw _privateConstructorUsedError;
   @JsonKey(name: 'file_path')
-  String get filePath => throw _privateConstructorUsedError;
+  String? get filePath => throw _privateConstructorUsedError;
 
   /// Serializes this MovieImage to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -304,10 +304,10 @@ abstract class $MovieImageCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      @JsonKey(name: 'aspect_ratio') int aspectRatio,
-      @JsonKey(name: 'height') int height,
-      @JsonKey(name: 'width') int width,
-      @JsonKey(name: 'file_path') String filePath});
+      @JsonKey(name: 'aspect_ratio') int? aspectRatio,
+      @JsonKey(name: 'height') int? height,
+      @JsonKey(name: 'width') int? width,
+      @JsonKey(name: 'file_path') String? filePath});
 }
 
 /// @nodoc
@@ -326,32 +326,32 @@ class _$MovieImageCopyWithImpl<$Res, $Val extends MovieImage>
   @override
   $Res call({
     Object? id = null,
-    Object? aspectRatio = null,
-    Object? height = null,
-    Object? width = null,
-    Object? filePath = null,
+    Object? aspectRatio = freezed,
+    Object? height = freezed,
+    Object? width = freezed,
+    Object? filePath = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      aspectRatio: null == aspectRatio
+      aspectRatio: freezed == aspectRatio
           ? _value.aspectRatio
           : aspectRatio // ignore: cast_nullable_to_non_nullable
-              as int,
-      height: null == height
+              as int?,
+      height: freezed == height
           ? _value.height
           : height // ignore: cast_nullable_to_non_nullable
-              as int,
-      width: null == width
+              as int?,
+      width: freezed == width
           ? _value.width
           : width // ignore: cast_nullable_to_non_nullable
-              as int,
-      filePath: null == filePath
+              as int?,
+      filePath: freezed == filePath
           ? _value.filePath
           : filePath // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -366,10 +366,10 @@ abstract class _$$MovieImageImplCopyWith<$Res>
   @useResult
   $Res call(
       {int id,
-      @JsonKey(name: 'aspect_ratio') int aspectRatio,
-      @JsonKey(name: 'height') int height,
-      @JsonKey(name: 'width') int width,
-      @JsonKey(name: 'file_path') String filePath});
+      @JsonKey(name: 'aspect_ratio') int? aspectRatio,
+      @JsonKey(name: 'height') int? height,
+      @JsonKey(name: 'width') int? width,
+      @JsonKey(name: 'file_path') String? filePath});
 }
 
 /// @nodoc
@@ -386,32 +386,32 @@ class __$$MovieImageImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? aspectRatio = null,
-    Object? height = null,
-    Object? width = null,
-    Object? filePath = null,
+    Object? aspectRatio = freezed,
+    Object? height = freezed,
+    Object? width = freezed,
+    Object? filePath = freezed,
   }) {
     return _then(_$MovieImageImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      aspectRatio: null == aspectRatio
+      aspectRatio: freezed == aspectRatio
           ? _value.aspectRatio
           : aspectRatio // ignore: cast_nullable_to_non_nullable
-              as int,
-      height: null == height
+              as int?,
+      height: freezed == height
           ? _value.height
           : height // ignore: cast_nullable_to_non_nullable
-              as int,
-      width: null == width
+              as int?,
+      width: freezed == width
           ? _value.width
           : width // ignore: cast_nullable_to_non_nullable
-              as int,
-      filePath: null == filePath
+              as int?,
+      filePath: freezed == filePath
           ? _value.filePath
           : filePath // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -434,16 +434,16 @@ class _$MovieImageImpl implements _MovieImage {
   final int id;
   @override
   @JsonKey(name: 'aspect_ratio')
-  final int aspectRatio;
+  final int? aspectRatio;
   @override
   @JsonKey(name: 'height')
-  final int height;
+  final int? height;
   @override
   @JsonKey(name: 'width')
-  final int width;
+  final int? width;
   @override
   @JsonKey(name: 'file_path')
-  final String filePath;
+  final String? filePath;
 
   @override
   String toString() {
@@ -488,10 +488,10 @@ class _$MovieImageImpl implements _MovieImage {
 abstract class _MovieImage implements MovieImage {
   const factory _MovieImage(
           {required final int id,
-          @JsonKey(name: 'aspect_ratio') required final int aspectRatio,
-          @JsonKey(name: 'height') required final int height,
-          @JsonKey(name: 'width') required final int width,
-          @JsonKey(name: 'file_path') required final String filePath}) =
+          @JsonKey(name: 'aspect_ratio') required final int? aspectRatio,
+          @JsonKey(name: 'height') required final int? height,
+          @JsonKey(name: 'width') required final int? width,
+          @JsonKey(name: 'file_path') required final String? filePath}) =
       _$MovieImageImpl;
 
   factory _MovieImage.fromJson(Map<String, dynamic> json) =
@@ -501,16 +501,16 @@ abstract class _MovieImage implements MovieImage {
   int get id;
   @override
   @JsonKey(name: 'aspect_ratio')
-  int get aspectRatio;
+  int? get aspectRatio;
   @override
   @JsonKey(name: 'height')
-  int get height;
+  int? get height;
   @override
   @JsonKey(name: 'width')
-  int get width;
+  int? get width;
   @override
   @JsonKey(name: 'file_path')
-  String get filePath;
+  String? get filePath;
 
   /// Create a copy of MovieImage
   /// with the given fields replaced by the non-null parameter values.

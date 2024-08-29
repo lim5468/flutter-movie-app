@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_app/di/getit.dart';
 import 'package:movie_app/feature/discover/discover.dart';
 import 'package:movie_app/feature/home/view/home_page.dart';
 import 'package:movie_app/feature/search/view/search_page.dart';
@@ -15,11 +17,15 @@ class LandingPage extends StatefulWidget {
 class _LandingPageState extends State<LandingPage> {
   int _selectedIndex = 0;
 
-  static const List<Widget> _pages = <Widget>[
-    HomePage(),
-    DiscoverPage(),
-    SearchPage(),
-    SettingsPage(),
+  final List<Widget> _pages = [
+    const HomePage(),
+    BlocProvider<DiscoverBloc>(
+      create: (BuildContext context) =>
+          getIt.get<DiscoverBloc>()..add(const Init()),
+      child: const DiscoverPage(),
+    ),
+    const SearchPage(),
+    const SettingsPage(),
   ];
 
   void _onItemTapped(int index) {
@@ -31,7 +37,10 @@ class _LandingPageState extends State<LandingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _pages[_selectedIndex],
+      body: IndexedStack(
+        index: _selectedIndex,
+        children: _pages,
+      ),
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(

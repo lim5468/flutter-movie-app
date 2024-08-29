@@ -7,8 +7,8 @@ part 'movie_genre.g.dart';
 class MovieGenre with _$MovieGenre {
   @JsonSerializable(explicitToJson: true)
   const factory MovieGenre({
-    required int id,
-    required String name,
+    @JsonKey(name: 'id') required int id,
+    @JsonKey(name: 'name') required String name,
   }) = _MovieGenre;
 
   factory MovieGenre.fromJson(Map<String, dynamic> json) =>

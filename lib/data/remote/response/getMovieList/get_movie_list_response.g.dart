@@ -9,11 +9,12 @@ part of 'get_movie_list_response.dart';
 _$GetMovieListResponseImpl _$$GetMovieListResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$GetMovieListResponseImpl(
-      results: (json['results'] as List<dynamic>)
-          .map((e) => Movie.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      totalPages: (json['total_pages'] as num).toInt(),
-      page: (json['page'] as num).toInt(),
+      results: (json['results'] as List<dynamic>?)
+              ?.map((e) => Movie.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+      totalPages: (json['total_pages'] as num?)?.toInt(),
+      page: (json['page'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$GetMovieListResponseImplToJson(

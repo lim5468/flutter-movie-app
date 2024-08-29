@@ -10,15 +10,18 @@ _$GetMovieImagesResponseImpl _$$GetMovieImagesResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$GetMovieImagesResponseImpl(
       id: (json['id'] as num).toInt(),
-      backdrops: (json['backdrops'] as List<dynamic>)
-          .map((e) => MovieImage.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      posters: (json['posters'] as List<dynamic>)
-          .map((e) => MovieImage.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      logos: (json['logos'] as List<dynamic>)
-          .map((e) => MovieImage.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      backdrops: (json['backdrops'] as List<dynamic>?)
+              ?.map((e) => MovieImage.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+      posters: (json['posters'] as List<dynamic>?)
+              ?.map((e) => MovieImage.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+      logos: (json['logos'] as List<dynamic>?)
+              ?.map((e) => MovieImage.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$$GetMovieImagesResponseImplToJson(
@@ -33,10 +36,10 @@ Map<String, dynamic> _$$GetMovieImagesResponseImplToJson(
 _$MovieImageImpl _$$MovieImageImplFromJson(Map<String, dynamic> json) =>
     _$MovieImageImpl(
       id: (json['id'] as num).toInt(),
-      aspectRatio: (json['aspect_ratio'] as num).toInt(),
-      height: (json['height'] as num).toInt(),
-      width: (json['width'] as num).toInt(),
-      filePath: json['file_path'] as String,
+      aspectRatio: (json['aspect_ratio'] as num?)?.toInt(),
+      height: (json['height'] as num?)?.toInt(),
+      width: (json['width'] as num?)?.toInt(),
+      filePath: json['file_path'] as String?,
     );
 
 Map<String, dynamic> _$$MovieImageImplToJson(_$MovieImageImpl instance) =>

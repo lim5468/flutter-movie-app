@@ -8,9 +8,9 @@ part 'get_movie_list_response.g.dart';
 class GetMovieListResponse with _$GetMovieListResponse {
   @JsonSerializable(explicitToJson: true)
   const factory GetMovieListResponse({
-    @JsonKey(name: 'results') required List<Movie> results,
-    @JsonKey(name: 'total_pages') required int totalPages,
-    @JsonKey(name: 'page') required int page,
+    @JsonKey(name: 'results') @Default([]) List<Movie> results,
+    @JsonKey(name: 'total_pages') required int? totalPages,
+    @JsonKey(name: 'page') required int? page,
   }) = _GetMovieListResponse;
 
   factory GetMovieListResponse.fromJson(Map<String, dynamic> json) =>

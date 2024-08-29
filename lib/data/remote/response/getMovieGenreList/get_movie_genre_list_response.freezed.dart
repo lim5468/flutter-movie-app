@@ -113,7 +113,7 @@ class __$$GetMovieGenreListResponseImplCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$GetMovieGenreListResponseImpl implements _GetMovieGenreListResponse {
   const _$GetMovieGenreListResponseImpl(
-      {@JsonKey(name: 'genres') required final List<MovieGenre> genres})
+      {@JsonKey(name: 'genres') final List<MovieGenre> genres = const []})
       : _genres = genres;
 
   factory _$GetMovieGenreListResponseImpl.fromJson(Map<String, dynamic> json) =>
@@ -165,7 +165,7 @@ class _$GetMovieGenreListResponseImpl implements _GetMovieGenreListResponse {
 
 abstract class _GetMovieGenreListResponse implements GetMovieGenreListResponse {
   const factory _GetMovieGenreListResponse(
-          {@JsonKey(name: 'genres') required final List<MovieGenre> genres}) =
+          {@JsonKey(name: 'genres') final List<MovieGenre> genres}) =
       _$GetMovieGenreListResponseImpl;
 
   factory _GetMovieGenreListResponse.fromJson(Map<String, dynamic> json) =

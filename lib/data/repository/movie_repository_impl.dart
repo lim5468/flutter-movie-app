@@ -34,10 +34,11 @@ class MovieRepositoryImpl implements MovieRepository {
   }
 
   @override
-  Future<List<Movie>> getMoviesByGenre(MovieGenre genre, int page) async {
+  Future<List<Movie>> getMoviesByGenres(
+      List<MovieGenre> genres, int page) async {
     final result = await apiService.getMoviesByGenre(
       apiKey: apiKey,
-      genreId: genre.id,
+      genreIds: genres.map((e) => e.id).join(','),
       page: page,
     );
     return result.results;

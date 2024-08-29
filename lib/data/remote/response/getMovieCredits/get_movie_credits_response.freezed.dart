@@ -21,7 +21,6 @@ GetMovieCreditsResponse _$GetMovieCreditsResponseFromJson(
 
 /// @nodoc
 mixin _$GetMovieCreditsResponse {
-  int get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'cast')
   List<Cast> get list => throw _privateConstructorUsedError;
 
@@ -41,7 +40,7 @@ abstract class $GetMovieCreditsResponseCopyWith<$Res> {
           $Res Function(GetMovieCreditsResponse) then) =
       _$GetMovieCreditsResponseCopyWithImpl<$Res, GetMovieCreditsResponse>;
   @useResult
-  $Res call({int id, @JsonKey(name: 'cast') List<Cast> list});
+  $Res call({@JsonKey(name: 'cast') List<Cast> list});
 }
 
 /// @nodoc
@@ -60,14 +59,9 @@ class _$GetMovieCreditsResponseCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
     Object? list = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
       list: null == list
           ? _value.list
           : list // ignore: cast_nullable_to_non_nullable
@@ -85,7 +79,7 @@ abstract class _$$GetMovieCreditsResponseImplCopyWith<$Res>
       __$$GetMovieCreditsResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, @JsonKey(name: 'cast') List<Cast> list});
+  $Res call({@JsonKey(name: 'cast') List<Cast> list});
 }
 
 /// @nodoc
@@ -103,14 +97,9 @@ class __$$GetMovieCreditsResponseImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
     Object? list = null,
   }) {
     return _then(_$GetMovieCreditsResponseImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
       list: null == list
           ? _value._list
           : list // ignore: cast_nullable_to_non_nullable
@@ -124,14 +113,12 @@ class __$$GetMovieCreditsResponseImplCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$GetMovieCreditsResponseImpl implements _GetMovieCreditsResponse {
   const _$GetMovieCreditsResponseImpl(
-      {required this.id, @JsonKey(name: 'cast') required final List<Cast> list})
+      {@JsonKey(name: 'cast') final List<Cast> list = const []})
       : _list = list;
 
   factory _$GetMovieCreditsResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$GetMovieCreditsResponseImplFromJson(json);
 
-  @override
-  final int id;
   final List<Cast> _list;
   @override
   @JsonKey(name: 'cast')
@@ -143,7 +130,7 @@ class _$GetMovieCreditsResponseImpl implements _GetMovieCreditsResponse {
 
   @override
   String toString() {
-    return 'GetMovieCreditsResponse(id: $id, list: $list)';
+    return 'GetMovieCreditsResponse(list: $list)';
   }
 
   @override
@@ -151,14 +138,13 @@ class _$GetMovieCreditsResponseImpl implements _GetMovieCreditsResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GetMovieCreditsResponseImpl &&
-            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality().equals(other._list, _list));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, const DeepCollectionEquality().hash(_list));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_list));
 
   /// Create a copy of GetMovieCreditsResponse
   /// with the given fields replaced by the non-null parameter values.
@@ -179,15 +165,12 @@ class _$GetMovieCreditsResponseImpl implements _GetMovieCreditsResponse {
 
 abstract class _GetMovieCreditsResponse implements GetMovieCreditsResponse {
   const factory _GetMovieCreditsResponse(
-          {required final int id,
-          @JsonKey(name: 'cast') required final List<Cast> list}) =
+          {@JsonKey(name: 'cast') final List<Cast> list}) =
       _$GetMovieCreditsResponseImpl;
 
   factory _GetMovieCreditsResponse.fromJson(Map<String, dynamic> json) =
       _$GetMovieCreditsResponseImpl.fromJson;
 
-  @override
-  int get id;
   @override
   @JsonKey(name: 'cast')
   List<Cast> get list;
@@ -206,11 +189,10 @@ Cast _$CastFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Cast {
-  int get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'name')
-  String get name => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
   @JsonKey(name: 'profile_path')
-  String get profilePath => throw _privateConstructorUsedError;
+  String? get profilePath => throw _privateConstructorUsedError;
 
   /// Serializes this Cast to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -227,9 +209,8 @@ abstract class $CastCopyWith<$Res> {
       _$CastCopyWithImpl<$Res, Cast>;
   @useResult
   $Res call(
-      {int id,
-      @JsonKey(name: 'name') String name,
-      @JsonKey(name: 'profile_path') String profilePath});
+      {@JsonKey(name: 'name') String? name,
+      @JsonKey(name: 'profile_path') String? profilePath});
 }
 
 /// @nodoc
@@ -247,23 +228,18 @@ class _$CastCopyWithImpl<$Res, $Val extends Cast>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? name = null,
-    Object? profilePath = null,
+    Object? name = freezed,
+    Object? profilePath = freezed,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      name: null == name
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      profilePath: null == profilePath
+              as String?,
+      profilePath: freezed == profilePath
           ? _value.profilePath
           : profilePath // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -276,9 +252,8 @@ abstract class _$$CastImplCopyWith<$Res> implements $CastCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {int id,
-      @JsonKey(name: 'name') String name,
-      @JsonKey(name: 'profile_path') String profilePath});
+      {@JsonKey(name: 'name') String? name,
+      @JsonKey(name: 'profile_path') String? profilePath});
 }
 
 /// @nodoc
@@ -293,23 +268,18 @@ class __$$CastImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? name = null,
-    Object? profilePath = null,
+    Object? name = freezed,
+    Object? profilePath = freezed,
   }) {
     return _then(_$CastImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      name: null == name
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      profilePath: null == profilePath
+              as String?,
+      profilePath: freezed == profilePath
           ? _value.profilePath
           : profilePath // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -319,25 +289,22 @@ class __$$CastImplCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$CastImpl implements _Cast {
   const _$CastImpl(
-      {required this.id,
-      @JsonKey(name: 'name') required this.name,
+      {@JsonKey(name: 'name') required this.name,
       @JsonKey(name: 'profile_path') required this.profilePath});
 
   factory _$CastImpl.fromJson(Map<String, dynamic> json) =>
       _$$CastImplFromJson(json);
 
   @override
-  final int id;
-  @override
   @JsonKey(name: 'name')
-  final String name;
+  final String? name;
   @override
   @JsonKey(name: 'profile_path')
-  final String profilePath;
+  final String? profilePath;
 
   @override
   String toString() {
-    return 'Cast(id: $id, name: $name, profilePath: $profilePath)';
+    return 'Cast(name: $name, profilePath: $profilePath)';
   }
 
   @override
@@ -345,7 +312,6 @@ class _$CastImpl implements _Cast {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CastImpl &&
-            (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.profilePath, profilePath) ||
                 other.profilePath == profilePath));
@@ -353,7 +319,7 @@ class _$CastImpl implements _Cast {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, profilePath);
+  int get hashCode => Object.hash(runtimeType, name, profilePath);
 
   /// Create a copy of Cast
   /// with the given fields replaced by the non-null parameter values.
@@ -373,21 +339,18 @@ class _$CastImpl implements _Cast {
 
 abstract class _Cast implements Cast {
   const factory _Cast(
-          {required final int id,
-          @JsonKey(name: 'name') required final String name,
-          @JsonKey(name: 'profile_path') required final String profilePath}) =
+          {@JsonKey(name: 'name') required final String? name,
+          @JsonKey(name: 'profile_path') required final String? profilePath}) =
       _$CastImpl;
 
   factory _Cast.fromJson(Map<String, dynamic> json) = _$CastImpl.fromJson;
 
   @override
-  int get id;
-  @override
   @JsonKey(name: 'name')
-  String get name;
+  String? get name;
   @override
   @JsonKey(name: 'profile_path')
-  String get profilePath;
+  String? get profilePath;
 
   /// Create a copy of Cast
   /// with the given fields replaced by the non-null parameter values.

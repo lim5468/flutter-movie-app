@@ -125,7 +125,7 @@ class __$$GetMovieVideosResponseImplCopyWithImpl<$Res>
 class _$GetMovieVideosResponseImpl implements _GetMovieVideosResponse {
   const _$GetMovieVideosResponseImpl(
       {required this.id,
-      @JsonKey(name: 'results') required final List<Video> list})
+      @JsonKey(name: 'results') final List<Video> list = const []})
       : _list = list;
 
   factory _$GetMovieVideosResponseImpl.fromJson(Map<String, dynamic> json) =>
@@ -181,7 +181,7 @@ class _$GetMovieVideosResponseImpl implements _GetMovieVideosResponse {
 abstract class _GetMovieVideosResponse implements GetMovieVideosResponse {
   const factory _GetMovieVideosResponse(
           {required final int id,
-          @JsonKey(name: 'results') required final List<Video> list}) =
+          @JsonKey(name: 'results') final List<Video> list}) =
       _$GetMovieVideosResponseImpl;
 
   factory _GetMovieVideosResponse.fromJson(Map<String, dynamic> json) =
@@ -209,11 +209,11 @@ Video _$VideoFromJson(Map<String, dynamic> json) {
 mixin _$Video {
   int get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'name')
-  String get name => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
   @JsonKey(name: 'site')
-  String get site => throw _privateConstructorUsedError;
+  String? get site => throw _privateConstructorUsedError;
   @JsonKey(name: 'key')
-  String get key => throw _privateConstructorUsedError;
+  String? get key => throw _privateConstructorUsedError;
 
   /// Serializes this Video to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -231,9 +231,9 @@ abstract class $VideoCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      @JsonKey(name: 'name') String name,
-      @JsonKey(name: 'site') String site,
-      @JsonKey(name: 'key') String key});
+      @JsonKey(name: 'name') String? name,
+      @JsonKey(name: 'site') String? site,
+      @JsonKey(name: 'key') String? key});
 }
 
 /// @nodoc
@@ -252,27 +252,27 @@ class _$VideoCopyWithImpl<$Res, $Val extends Video>
   @override
   $Res call({
     Object? id = null,
-    Object? name = null,
-    Object? site = null,
-    Object? key = null,
+    Object? name = freezed,
+    Object? site = freezed,
+    Object? key = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      name: null == name
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      site: null == site
+              as String?,
+      site: freezed == site
           ? _value.site
           : site // ignore: cast_nullable_to_non_nullable
-              as String,
-      key: null == key
+              as String?,
+      key: freezed == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -286,9 +286,9 @@ abstract class _$$VideoImplCopyWith<$Res> implements $VideoCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      @JsonKey(name: 'name') String name,
-      @JsonKey(name: 'site') String site,
-      @JsonKey(name: 'key') String key});
+      @JsonKey(name: 'name') String? name,
+      @JsonKey(name: 'site') String? site,
+      @JsonKey(name: 'key') String? key});
 }
 
 /// @nodoc
@@ -305,27 +305,27 @@ class __$$VideoImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? name = null,
-    Object? site = null,
-    Object? key = null,
+    Object? name = freezed,
+    Object? site = freezed,
+    Object? key = freezed,
   }) {
     return _then(_$VideoImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      name: null == name
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      site: null == site
+              as String?,
+      site: freezed == site
           ? _value.site
           : site // ignore: cast_nullable_to_non_nullable
-              as String,
-      key: null == key
+              as String?,
+      key: freezed == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -347,13 +347,13 @@ class _$VideoImpl implements _Video {
   final int id;
   @override
   @JsonKey(name: 'name')
-  final String name;
+  final String? name;
   @override
   @JsonKey(name: 'site')
-  final String site;
+  final String? site;
   @override
   @JsonKey(name: 'key')
-  final String key;
+  final String? key;
 
   @override
   String toString() {
@@ -394,9 +394,9 @@ class _$VideoImpl implements _Video {
 abstract class _Video implements Video {
   const factory _Video(
       {required final int id,
-      @JsonKey(name: 'name') required final String name,
-      @JsonKey(name: 'site') required final String site,
-      @JsonKey(name: 'key') required final String key}) = _$VideoImpl;
+      @JsonKey(name: 'name') required final String? name,
+      @JsonKey(name: 'site') required final String? site,
+      @JsonKey(name: 'key') required final String? key}) = _$VideoImpl;
 
   factory _Video.fromJson(Map<String, dynamic> json) = _$VideoImpl.fromJson;
 
@@ -404,13 +404,13 @@ abstract class _Video implements Video {
   int get id;
   @override
   @JsonKey(name: 'name')
-  String get name;
+  String? get name;
   @override
   @JsonKey(name: 'site')
-  String get site;
+  String? get site;
   @override
   @JsonKey(name: 'key')
-  String get key;
+  String? get key;
 
   /// Create a copy of Video
   /// with the given fields replaced by the non-null parameter values.

@@ -8,7 +8,7 @@ part 'get_movie_genre_list_response.g.dart';
 class GetMovieGenreListResponse with _$GetMovieGenreListResponse {
   @JsonSerializable(explicitToJson: true)
   const factory GetMovieGenreListResponse({
-    @JsonKey(name: 'genres') required List<MovieGenre> genres,
+    @JsonKey(name: 'genres') @Default([]) List<MovieGenre> genres,
   }) = _GetMovieGenreListResponse;
 
   factory GetMovieGenreListResponse.fromJson(Map<String, dynamic> json) =>
