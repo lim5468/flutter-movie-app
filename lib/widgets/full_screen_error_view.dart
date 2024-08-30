@@ -18,7 +18,9 @@ class FullScreenErrorView extends StatelessWidget {
         children: [
           Text(message),
           const SizedBox(height: 20),
-          ElevatedButton(onPressed: onRetryClicked, child: const Text('Retry')),
+          if (onRetryClicked != null)
+            ElevatedButton(
+                onPressed: onRetryClicked, child: const Text('Retry')),
         ],
       ),
     );

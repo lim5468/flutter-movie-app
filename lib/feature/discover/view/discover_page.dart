@@ -38,6 +38,12 @@ class _DiscoverPageState extends State<DiscoverPage> {
   }
 
   @override
+  void dispose() {
+    _pagingController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocConsumer<DiscoverBloc, DiscoverState>(
       builder: (context, state) {
@@ -56,7 +62,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
                             'Discover'.raw,
                             style: Theme.of(context)
                                 .textTheme
-                                .displayMedium
+                                .displaySmall
                                 ?.copyWith(fontWeight: FontWeight.bold),
                           ),
                         ),

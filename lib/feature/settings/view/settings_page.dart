@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:movie_app/constants.dart';
+import 'package:movie_app/utils/extensions/string_ext.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -7,16 +10,79 @@ class SettingsPage extends StatefulWidget {
   State<SettingsPage> createState() => _SettingsPageState();
 }
 
-class _SettingsPageState extends State<SettingsPage>
-    with AutomaticKeepAliveClientMixin {
+class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
-    super.build(context);
-    return const Center(
-      child: Text('Settings Page'),
+    return Scaffold(
+      body: SafeArea(
+        child: NestedScrollView(
+          headerSliverBuilder: (context, value) {
+            return [
+              SliverToBoxAdapter(
+                  child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Text(
+                  'Settings'.raw,
+                  style: Theme.of(context)
+                      .textTheme
+                      .displaySmall
+                      ?.copyWith(fontWeight: FontWeight.bold),
+                ),
+              )),
+            ];
+          },
+          body: ValueListenableBuilder(
+            valueListenable:
+                Hive.box<String>(Constants.hiveThemeModeBox).listenable(),
+            builder: (context, box, widget) {
+              final followSystem =
+                  box.get('followSystem', defaultValue: 'true');
+              final themeMode = box.get('themeMode', defaultValue: 'light');
+              final systemMode = followSystem == 'true';
+              final darkMode = themeMode == 'dark';
+
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Text(
+                      'App Theme'.raw,
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                            fontWeight: FontWeight.w500,
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                    ),
+                  ),
+                  ListTile(
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+                    title: Text('System'.raw),
+                    subtitle: Text('Follow system theme'.raw),
+                    trailing: Switch(
+                      value: systemMode,
+                      onChanged: (val) {
+                        box.put('followSystem', systemMode ? 'false' : 'true');
+                      },
+                    ),
+                  ),
+                  ListTile(
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+                    title: Text('Dark Theme'.raw),
+                    trailing: Switch(
+                      value: darkMode,
+                      onChanged: systemMode
+                          ? null
+                          : (val) {
+                              box.put('themeMode', darkMode ? 'light' : 'dark');
+                            },
+                    ),
+                  ),
+                ],
+              );
+            },
+          ),
+        ),
+      ),
     );
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }

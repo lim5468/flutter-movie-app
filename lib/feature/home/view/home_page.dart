@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage> {
                       'Home'.raw,
                       style: Theme.of(context)
                           .textTheme
-                          .displayMedium
+                          .displaySmall
                           ?.copyWith(fontWeight: FontWeight.bold),
                     ),
                   )),

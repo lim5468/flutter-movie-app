@@ -1,5 +1,13 @@
 class Constants {
-  static String movieDbBackdropImageBaseUrl = 'https://image.tmdb.org/t/p/w780';
-  static String movieDbPosterImageBaseUrl = 'https://image.tmdb.org/t/p/w780';
-  static String movieDbProfileImageBaseUrl = 'https://image.tmdb.org/t/p/w185';
+  //TMDB image paths
+  static const String movieDbBackdropImageBaseUrl =
+      'https://image.tmdb.org/t/p/w780';
+  static const String movieDbPosterImageBaseUrl =
+      'https://image.tmdb.org/t/p/w780';
+  static const String movieDbProfileImageBaseUrl =
+      'https://image.tmdb.org/t/p/w185';
+
+  //Hive
+  static const String hiveThemeModeBox = 'hiveThemeModeBox';
+  static const String hiveMovieSearchHistoryBox = 'hiveMovieSearchHistoryBox';
 }

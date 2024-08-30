@@ -27,7 +27,7 @@ class MovieCategorySectionView extends StatelessWidget {
             category.displayName,
             style: Theme.of(context)
                 .textTheme
-                .headlineMedium
+                .headlineSmall
                 ?.copyWith(fontWeight: FontWeight.bold),
           ),
         ),

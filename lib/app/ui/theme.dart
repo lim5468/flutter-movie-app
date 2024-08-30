@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 final _lightColorScheme = ColorScheme.fromSeed(seedColor: Colors.purple);
 final _darkColorScheme =
@@ -13,6 +14,21 @@ final ThemeData lightTheme =
     showUnselectedLabels: false,
     type: BottomNavigationBarType.fixed,
   ),
+  searchBarTheme: SearchBarThemeData(
+    elevation: WidgetStateProperty.all(0),
+  ),
+  appBarTheme: AppBarTheme(
+    elevation: 0,
+    backgroundColor: Colors.transparent,
+    surfaceTintColor: Colors.transparent,
+    systemOverlayStyle: SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarBrightness: _lightColorScheme.brightness,
+      statusBarIconBrightness: _lightColorScheme.brightness == Brightness.dark
+          ? Brightness.light
+          : Brightness.dark,
+    ),
+  ),
 );
 
 final ThemeData darkTheme =
@@ -23,5 +39,20 @@ final ThemeData darkTheme =
     showSelectedLabels: false,
     showUnselectedLabels: false,
     type: BottomNavigationBarType.fixed,
+  ),
+  searchBarTheme: SearchBarThemeData(
+    elevation: WidgetStateProperty.all(0),
+  ),
+  appBarTheme: AppBarTheme(
+    elevation: 0,
+    backgroundColor: Colors.transparent,
+    surfaceTintColor: Colors.transparent,
+    systemOverlayStyle: SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarBrightness: _darkColorScheme.brightness,
+      statusBarIconBrightness: _darkColorScheme.brightness == Brightness.dark
+          ? Brightness.light
+          : Brightness.dark,
+    ),
   ),
 );
