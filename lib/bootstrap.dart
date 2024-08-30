@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:movie_app/constants.dart';
 
@@ -30,6 +31,8 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   Bloc.observer = const AppBlocObserver();
 
   // Add cross-flavor configuration here
+  await dotenv.load(fileName: ".env");
+
   await Hive.initFlutter();
   await Hive.openBox<String>(Constants.hiveThemeModeBox);
   await Hive.openBox<List<String>>(Constants.hiveMovieSearchHistoryBox);
