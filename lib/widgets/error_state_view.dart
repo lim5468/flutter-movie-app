@@ -26,6 +26,7 @@ class ErrorStateView extends StatelessWidget {
         children: [
           Text(
             'Something went wrong'.raw,
+            textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.labelLarge,
           ),
         ],

@@ -11,6 +11,7 @@ class ScrollEndedStateView extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       child: Text(
         'No more content'.raw,
+        textAlign: TextAlign.center,
         style: Theme.of(context).textTheme.labelLarge,
       ),
     );

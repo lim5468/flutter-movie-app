@@ -26,6 +26,7 @@ class EmptyStateView extends StatelessWidget {
         children: [
           Text(
             'No content found'.raw,
+            textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.labelLarge,
           ),
         ],
