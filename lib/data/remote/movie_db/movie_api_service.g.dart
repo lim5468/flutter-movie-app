@@ -216,14 +216,9 @@ class _MovieApiService implements MovieApiService {
   Future<GetMovieVideosResponse> getMovieVideos({
     required String movieId,
     required String apiKey,
-    String? language = 'en',
   }) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{
-      r'api_key': apiKey,
-      r'language': language,
-    };
-    queryParameters.removeWhere((k, v) => v == null);
+    final queryParameters = <String, dynamic>{r'api_key': apiKey};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<GetMovieVideosResponse>(Options(
@@ -257,14 +252,9 @@ class _MovieApiService implements MovieApiService {
   Future<GetMovieImagesResponse> getMovieImages({
     required String movieId,
     required String apiKey,
-    String? language = 'en',
   }) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{
-      r'api_key': apiKey,
-      r'language': language,
-    };
-    queryParameters.removeWhere((k, v) => v == null);
+    final queryParameters = <String, dynamic>{r'api_key': apiKey};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<GetMovieImagesResponse>(Options(

@@ -49,14 +49,14 @@ abstract class MovieApiService {
   Future<GetMovieVideosResponse> getMovieVideos({
     @Path() required String movieId,
     @Query('api_key') required String apiKey,
-    @Query('language') String? language = 'en',
+    // @Query('language') String? language = 'en',
   });
 
   @GET('/movie/{movieId}/images')
   Future<GetMovieImagesResponse> getMovieImages({
     @Path() required String movieId,
     @Query('api_key') required String apiKey,
-    @Query('language') String? language = 'en',
+    // @Query('language') String? language = 'en',
   });
 
   @GET('/search/movie')

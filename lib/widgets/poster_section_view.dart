@@ -40,7 +40,7 @@ class _PosterSectionViewState extends State<PosterSectionView> {
         ),
         Positioned(
           bottom: 16,
-          right: 16,
+          left: 16,
           child: PageIndicatorView(
             pageController: _pageController,
             pageCount: widget.images.length,

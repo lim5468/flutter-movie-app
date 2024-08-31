@@ -31,6 +31,8 @@ class _YoutubePlayerPageState extends State<YoutubePlayerPage> {
 
   @override
   void dispose() {
+    _controller.dispose();
+
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
     ]);
@@ -41,6 +43,12 @@ class _YoutubePlayerPageState extends State<YoutubePlayerPage> {
   @override
   Widget build(BuildContext context) {
     return YoutubePlayer(
+      topActions: [
+        IconButton(
+          onPressed: () => Navigator.of(context).pop(),
+          icon: const Icon(Icons.close),
+        ),
+      ],
       controller: _controller,
       progressIndicatorColor: Colors.red,
       progressColors: const ProgressBarColors(
