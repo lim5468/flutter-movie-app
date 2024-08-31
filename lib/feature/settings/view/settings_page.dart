@@ -87,7 +87,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 );
               },
             ),
-            Divider(indent: 16, endIndent: 16),
+            const Divider(indent: 16, endIndent: 16),
             SizedBox(
               height: 16.px,
             ),
@@ -105,6 +105,12 @@ class _SettingsPageState extends State<SettingsPage> {
               contentPadding: const EdgeInsets.symmetric(horizontal: 16),
               title: Text('Created by'.raw),
               subtitle: Text('ChiaMin Lim'.raw),
+            ),
+            ListTile(
+              contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+              title: Text('Github'.raw),
+              subtitle:
+                  Text('https://github.com/lim5468/flutter-movie-app'.raw),
             ),
           ],
         ),
