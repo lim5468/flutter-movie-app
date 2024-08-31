@@ -18,17 +18,31 @@ class VideoItemView extends StatelessWidget {
   Widget build(BuildContext context) {
     final widget = SizedBox(
       width: 56.w,
-      child: Column(
-        children: [
-          Card(
-            clipBehavior: Clip.antiAlias,
-            child: ImageView(
-              height: 56.w / 1.8,
-              width: 56.w,
-              video?.thumbnailUrl,
-            ),
-          ),
-        ],
+      child: LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
+          return Stack(
+            children: [
+              Card(
+                clipBehavior: Clip.antiAlias,
+                child: ImageView(
+                  height: 56.w / 1.8,
+                  width: 56.w,
+                  video?.thumbnailUrl,
+                ),
+              ),
+              Positioned(
+                top: 0,
+                left: 0,
+                bottom: 0,
+                right: 0,
+                child: Icon(
+                  Icons.play_arrow_rounded,
+                  size: constraints.maxHeight / 3,
+                ),
+              ),
+            ],
+          );
+        },
       ),
     );
 

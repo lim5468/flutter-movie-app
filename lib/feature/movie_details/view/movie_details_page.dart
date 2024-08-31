@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/feature/movie_details/bloc/movie_details_bloc.dart';
 import 'package:movie_app/feature/movie_details/bloc/movie_details_event.dart';
 import 'package:movie_app/feature/movie_details/bloc/movie_details_state.dart';
+import 'package:movie_app/navigation/navigation.dart';
 import 'package:movie_app/utils/extensions/string_ext.dart';
 import 'package:movie_app/utils/extensions/time_helper.dart';
 import 'package:movie_app/widgets/cast_section_view.dart';
@@ -135,6 +136,11 @@ class _LoadedView extends StatelessWidget {
           VideoSectionView(
             videos: state.videos,
             isLoading: state.isVideosLoading,
+            onItemClicked: (video) {
+              if (video.key != null) {
+                routeToYoutubePlayer(context, video.key!);
+              }
+            },
           ),
         if (state.cast.isNotEmpty || state.isCastLoading)
           CastSectionView(

@@ -19,17 +19,13 @@ class PosterItemView extends StatelessWidget {
   Widget build(BuildContext context) {
     final widget = SizedBox(
       width: 28.w,
-      child: Column(
-        children: [
-          Card(
-            clipBehavior: Clip.antiAlias,
-            child: ImageView(
-              height: 28.w * 1.5,
-              width: 28.w,
-              image?.imageUrl,
-            ),
-          ),
-        ],
+      child: Card(
+        clipBehavior: Clip.antiAlias,
+        child: ImageView(
+          height: 28.w * 1.5,
+          width: 28.w,
+          image?.imageUrl,
+        ),
       ),
     );
 

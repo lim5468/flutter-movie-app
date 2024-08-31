@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/widgets/image_view.dart';
 
 class ImageCarouselView extends StatefulWidget {
   const ImageCarouselView(
@@ -18,9 +19,8 @@ class _ImageCarouselViewState extends State<ImageCarouselView> {
       controller: widget.pageController,
       itemCount: widget.imageUrls.length,
       itemBuilder: (context, index) {
-        return Image.network(
+        return ImageView(
           widget.imageUrls[index],
-          fit: BoxFit.cover,
         );
       },
     );
