@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "setup": "npm install",
+    "generate-build": "fvm flutter pub run build_runner build --delete-conflicting-outputs",
+    "apk-development": "fvm flutter build apk --flavor development -t lib/main_development.dart",
+    "apk-staging": "fvm flutter build apk --flavor staging -t lib/main_staging.dart",
+    "apk-production": "fvm flutter build apk --flavor production -t lib/main_production.dart",
+    "ipa-dev": "fvm flutter build ipa --flavor development -t lib/main_development.dart",
+    "ipa-staging": "fvm flutter build ipa --flavor staging -t lib/main_staging.dart",
+    "ipa-production": "fvm flutter build ipa --flavor production -t lib/main_production.dart"
+  }
+}
