@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:movie_app/constants.dart';
 
 part 'get_movie_credits_response.freezed.dart';
 part 'get_movie_credits_response.g.dart';
@@ -23,4 +24,9 @@ class Cast with _$Cast {
   }) = _Cast;
 
   factory Cast.fromJson(Map<String, dynamic> json) => _$CastFromJson(json);
+}
+
+extension CastExt on Cast {
+  String get profileUrl =>
+      '${Constants.movieDbProfileImageBaseUrl}$profilePath';
 }

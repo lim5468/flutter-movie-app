@@ -1,23 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/domain/enum/movie_category.dart';
-import 'package:movie_app/domain/model/movie/movie.dart';
-import 'package:movie_app/widgets/movie_item_view.dart';
+import 'package:movie_app/data/remote/response/getMovieVideos/get_movie_videos_response.dart';
+import 'package:movie_app/utils/extensions/string_ext.dart';
 import 'package:movie_app/widgets/ripple_tap_view.dart';
+import 'package:movie_app/widgets/video_item_view.dart';
 import 'package:sizer/sizer.dart';
 
-class MovieCategorySectionView extends StatelessWidget {
-  const MovieCategorySectionView({
-    required this.category,
-    required this.movies,
+class VideoSectionView extends StatelessWidget {
+  const VideoSectionView({
+    required this.videos,
     this.isLoading = false,
-    this.onMovieItemClicked,
+    this.onItemClicked,
     super.key,
   });
 
-  final MovieCategory category;
-  final List<Movie> movies;
+  final List<Video> videos;
   final bool isLoading;
-  final void Function(Movie movie)? onMovieItemClicked;
+  final void Function(Video video)? onItemClicked;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +25,7 @@ class MovieCategorySectionView extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Text(
-            category.displayName,
+            'Videos'.raw,
             style: Theme.of(context)
                 .textTheme
                 .headlineSmall
@@ -36,21 +34,25 @@ class MovieCategorySectionView extends StatelessWidget {
         ),
         SizedBox(height: 8.px),
         SizedBox(
-          height: 28.w * 2,
+          height: 56.w / 1.6,
           child: ListView.separated(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             scrollDirection: Axis.horizontal,
-            itemCount: isLoading ? 5 : movies.length,
+            itemCount: isLoading ? 5 : videos.length,
             itemBuilder: (context, index) {
               if (isLoading) {
-                return const MovieItemView.shimmerView();
+                return const VideoItemView.shimmerView();
               }
-              final item = movies[index];
+              final item = videos[index];
               return RippleTapView(
-                  onTap: onMovieItemClicked == null
-                      ? null
-                      : () => onMovieItemClicked?.call(item),
-                  child: MovieItemView(movie: item, key: ValueKey(item.id)));
+                onTap: onItemClicked == null
+                    ? null
+                    : () => onItemClicked?.call(item),
+                child: VideoItemView(
+                  video: item,
+                  key: ValueKey(item.key),
+                ),
+              );
             },
             separatorBuilder: (BuildContext context, int index) {
               return SizedBox(width: 4.px);

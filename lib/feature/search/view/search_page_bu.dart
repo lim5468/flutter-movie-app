@@ -64,78 +64,77 @@ class _SearchPageState extends State<SearchPage> {
       builder: (context, state) {
         return Scaffold(
           body: SafeArea(
-            child: CustomScrollView(
-              slivers: [
-                SliverToBoxAdapter(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(16),
-                        child: Text(
-                          'Search'.raw,
-                          style: Theme.of(context)
-                              .textTheme
-                              .displaySmall
-                              ?.copyWith(fontWeight: FontWeight.bold),
+            child: NestedScrollView(
+              headerSliverBuilder: (context, value) {
+                return [
+                  SliverToBoxAdapter(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(16),
+                          child: Text(
+                            'Search'.raw,
+                            style: Theme.of(context)
+                                .textTheme
+                                .displaySmall
+                                ?.copyWith(fontWeight: FontWeight.bold),
+                          ),
                         ),
-                      ),
-                      StatefulBuilder(
-                        builder: (context, setState) {
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 16),
-                            child: SearchBar(
-                              controller: _searchInputController,
-                              focusNode: widget.searchFocusNode,
-                              onTapOutside: (event) {
-                                widget.searchFocusNode?.unfocus();
-                              },
-                              hintText: 'Type something...'.raw,
-                              leading: const Padding(
-                                padding: EdgeInsets.only(left: 16),
-                                child: Icon(Icons.search),
+                        StatefulBuilder(
+                          builder: (context, setState) {
+                            return Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 16),
+                              child: SearchBar(
+                                controller: _searchInputController,
+                                focusNode: widget.searchFocusNode,
+                                onTapOutside: (event) {
+                                  widget.searchFocusNode?.unfocus();
+                                },
+                                hintText: 'Type something...'.raw,
+                                leading: const Padding(
+                                  padding: EdgeInsets.only(left: 16),
+                                  child: Icon(Icons.search),
+                                ),
+                                trailing: _searchInputController.text.isEmpty
+                                    ? null
+                                    : [
+                                        IconButton(
+                                          onPressed: () {
+                                            context.read<SearchBloc>().add(
+                                                  const UpdateQuery(query: ''),
+                                                );
+                                            _searchInputController.clear();
+                                            setState(() {});
+                                          },
+                                          icon: const Icon(Icons.clear),
+                                        ),
+                                      ],
+                                onChanged: (value) {
+                                  setState(() {});
+                                },
                               ),
-                              trailing: _searchInputController.text.isEmpty
-                                  ? null
-                                  : [
-                                      IconButton(
-                                        onPressed: () {
-                                          context.read<SearchBloc>().add(
-                                                const UpdateQuery(query: ''),
-                                              );
-                                          _searchInputController.clear();
-                                          setState(() {});
-                                        },
-                                        icon: const Icon(Icons.clear),
-                                      ),
-                                    ],
-                              onChanged: (value) {
-                                setState(() {});
-                              },
-                            ),
-                          );
-                        },
-                      ),
-                    ],
+                            );
+                          },
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                switch (state) {
-                  Initial() => SliverToBoxAdapter(child: Container()),
-                  Loading() => const SliverFillRemaining(
-                      hasScrollBody: false, child: FullScreenLoadingView()),
-                  final Loaded state => _LoadedView(
-                      state: state,
-                      pagingController: _pagingController,
-                      searchInputController: _searchInputController,
-                    ),
-                  Error(message: final m) => SliverFillRemaining(
-                      hasScrollBody: false,
-                      child: FullScreenErrorView(
-                        message: m,
-                      ),
-                    ),
-                },
-              ],
+                ];
+              },
+              body: switch (state) {
+                Initial() => Container(),
+                Loading() => const FullScreenLoadingView(),
+                final Loaded state => _LoadedView(
+                    state: state,
+                    pagingController: _pagingController,
+                    searchInputController: _searchInputController,
+                  ),
+                Error(message: final m) => FullScreenErrorView(
+                    message: m,
+                  ),
+              },
             ),
           ),
         );
@@ -180,13 +179,11 @@ class _LoadedView extends StatelessWidget {
     final hasQuery = state.currentQuery?.isNotEmpty ?? false;
 
     if (!hasQuery) {
-      return SliverToBoxAdapter(
-        child: SearchHistoryView(
-          searchHistory: state.queryHistory,
-          onSearchItemClicked: (String value) {
-            searchInputController.text = value;
-          },
-        ),
+      return SearchHistoryView(
+        searchHistory: state.queryHistory,
+        onSearchItemClicked: (String value) {
+          searchInputController.text = value;
+        },
       );
     }
 
@@ -206,22 +203,20 @@ class PaginatedMovieListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverPadding(
+    return PagedGridView(
       padding: const EdgeInsets.all(16),
-      sliver: PagedSliverGrid(
-        showNewPageProgressIndicatorAsGridChild: false,
-        showNewPageErrorIndicatorAsGridChild: false,
-        showNoMoreItemsIndicatorAsGridChild: false,
-        pagingController: pagingController,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          childAspectRatio: 2 / 4,
-          mainAxisSpacing: 8,
-          crossAxisSpacing: 8,
-          crossAxisCount: 3,
-        ),
-        builderDelegate: getListItemDelegate(
-          Theme.of(context).colorScheme.onSurface,
-        ),
+      showNewPageProgressIndicatorAsGridChild: false,
+      showNewPageErrorIndicatorAsGridChild: false,
+      showNoMoreItemsIndicatorAsGridChild: false,
+      pagingController: pagingController,
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        childAspectRatio: 2 / 4,
+        mainAxisSpacing: 8,
+        crossAxisSpacing: 8,
+        crossAxisCount: 3,
+      ),
+      builderDelegate: getListItemDelegate(
+        Theme.of(context).colorScheme.onSurface,
       ),
     );
   }

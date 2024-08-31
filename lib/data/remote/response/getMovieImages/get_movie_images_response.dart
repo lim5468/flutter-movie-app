@@ -1,5 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../../../constants.dart';
+
 part 'get_movie_images_response.freezed.dart';
 part 'get_movie_images_response.g.dart';
 
@@ -7,7 +9,6 @@ part 'get_movie_images_response.g.dart';
 class GetMovieImagesResponse with _$GetMovieImagesResponse {
   @JsonSerializable(explicitToJson: true)
   const factory GetMovieImagesResponse({
-    required int id,
     @JsonKey(name: 'backdrops') @Default([]) List<MovieImage> backdrops,
     @JsonKey(name: 'posters') @Default([]) List<MovieImage> posters,
     @JsonKey(name: 'logos') @Default([]) List<MovieImage> logos,
@@ -21,8 +22,7 @@ class GetMovieImagesResponse with _$GetMovieImagesResponse {
 class MovieImage with _$MovieImage {
   @JsonSerializable(explicitToJson: true)
   const factory MovieImage({
-    required int id,
-    @JsonKey(name: 'aspect_ratio') required int? aspectRatio,
+    @JsonKey(name: 'aspect_ratio') required double? aspectRatio,
     @JsonKey(name: 'height') required int? height,
     @JsonKey(name: 'width') required int? width,
     @JsonKey(name: 'file_path') required String? filePath,
@@ -30,4 +30,8 @@ class MovieImage with _$MovieImage {
 
   factory MovieImage.fromJson(Map<String, dynamic> json) =>
       _$MovieImageFromJson(json);
+}
+
+extension MovieImageExt on MovieImage {
+  String get imageUrl => '${Constants.movieDbPosterImageBaseUrl}$filePath';
 }

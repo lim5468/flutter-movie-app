@@ -14,6 +14,7 @@ _$MovieDetailsImpl _$$MovieDetailsImplFromJson(Map<String, dynamic> json) =>
       posterPath: json['poster_path'] as String?,
       releaseDate: json['release_date'] as String?,
       overview: json['overview'] as String?,
+      runtime: (json['runtime'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$MovieDetailsImplToJson(_$MovieDetailsImpl instance) =>
@@ -24,4 +25,5 @@ Map<String, dynamic> _$$MovieDetailsImplToJson(_$MovieDetailsImpl instance) =>
       'poster_path': instance.posterPath,
       'release_date': instance.releaseDate,
       'overview': instance.overview,
+      'runtime': instance.runtime,
     };

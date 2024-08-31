@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,6 +8,7 @@ import 'package:movie_app/domain/model/movie_genre/movie_genre.dart';
 import 'package:movie_app/feature/discover/bloc/discover_bloc.dart';
 import 'package:movie_app/feature/discover/bloc/discover_event.dart';
 import 'package:movie_app/feature/discover/bloc/discover_state.dart';
+import 'package:movie_app/navigation/navigation.dart';
 import 'package:movie_app/utils/extensions/string_ext.dart';
 import 'package:movie_app/widgets/empty_state_view.dart';
 import 'package:movie_app/widgets/error_state_view.dart';
@@ -14,6 +16,7 @@ import 'package:movie_app/widgets/filter_chips_view.dart';
 import 'package:movie_app/widgets/full_screen_error_view.dart';
 import 'package:movie_app/widgets/full_screen_loading_view.dart';
 import 'package:movie_app/widgets/movie_item_view.dart';
+import 'package:movie_app/widgets/ripple_tap_view.dart';
 import 'package:movie_app/widgets/scroll_ended_state_view.dart';
 
 class DiscoverPage extends StatefulWidget {
@@ -49,54 +52,61 @@ class _DiscoverPageState extends State<DiscoverPage> {
       builder: (context, state) {
         return Scaffold(
           body: SafeArea(
-            child: NestedScrollView(
-              headerSliverBuilder: (context, value) {
-                return [
-                  SliverToBoxAdapter(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(16),
-                          child: Text(
-                            'Discover'.raw,
-                            style: Theme.of(context)
-                                .textTheme
-                                .displaySmall
-                                ?.copyWith(fontWeight: FontWeight.bold),
-                          ),
+            child: CustomScrollView(
+              slivers: [
+                CupertinoSliverRefreshControl(
+                  onRefresh: () async {
+                    context.read<DiscoverBloc>().add(const Refresh());
+                  },
+                ),
+                SliverToBoxAdapter(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(16),
+                        child: Text(
+                          'Discover'.raw,
+                          style: Theme.of(context)
+                              .textTheme
+                              .displaySmall
+                              ?.copyWith(fontWeight: FontWeight.bold),
                         ),
-                        if (state is Loaded) ...[
-                          FilterChipsView(
-                            key: const PageStorageKey('filterChips'),
-                            genres: state.movieGenres,
-                            selectedGenres: state.selectedMovieGenres,
-                            onFilterUpdated: (List<MovieGenre> value) {
-                              context
-                                  .read<DiscoverBloc>()
-                                  .add(SetMovieGenres(movieGenres: value));
-                            },
-                          ),
-                        ],
+                      ),
+                      if (state is Loaded) ...[
+                        FilterChipsView(
+                          key: const PageStorageKey('filterChips'),
+                          genres: state.movieGenres,
+                          selectedGenres: state.selectedMovieGenres,
+                          onFilterUpdated: (List<MovieGenre> value) {
+                            context
+                                .read<DiscoverBloc>()
+                                .add(SetMovieGenres(movieGenres: value));
+                          },
+                        ),
                       ],
+                    ],
+                  ),
+                ),
+                switch (state) {
+                  Initial() => SliverToBoxAdapter(child: Container()),
+                  Loading() => const SliverFillRemaining(
+                      hasScrollBody: false, child: FullScreenLoadingView()),
+                  final Loaded state => _LoadedView(
+                      state: state,
+                      pagingController: _pagingController,
                     ),
-                  ),
-                ];
-              },
-              body: switch (state) {
-                Initial() => Container(),
-                Loading() => const FullScreenLoadingView(),
-                final Loaded state => _LoadedView(
-                    state: state,
-                    pagingController: _pagingController,
-                  ),
-                Error(message: final m) => FullScreenErrorView(
-                    message: m,
-                    onRetryClicked: () {
-                      context.read<DiscoverBloc>().add(const Refresh());
-                    },
-                  ),
-              },
+                  Error(message: final m) => SliverFillRemaining(
+                      hasScrollBody: false,
+                      child: FullScreenErrorView(
+                        message: m,
+                        onRetryClicked: () {
+                          context.read<DiscoverBloc>().add(const Refresh());
+                        },
+                      ),
+                    ),
+                },
+              ],
             ),
           ),
         );
@@ -137,13 +147,8 @@ class _LoadedView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RefreshIndicator(
-      onRefresh: () async {
-        context.read<DiscoverBloc>().add(const Refresh());
-      },
-      child: PaginatedMovieListView(
-        pagingController: pagingController,
-      ),
+    return PaginatedMovieListView(
+      pagingController: pagingController,
     );
   }
 }
@@ -155,28 +160,37 @@ class PaginatedMovieListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PagedGridView(
+    return SliverPadding(
       padding: const EdgeInsets.all(16),
-      showNewPageProgressIndicatorAsGridChild: false,
-      showNewPageErrorIndicatorAsGridChild: false,
-      showNoMoreItemsIndicatorAsGridChild: false,
-      pagingController: pagingController,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        childAspectRatio: 2 / 4,
-        mainAxisSpacing: 8,
-        crossAxisSpacing: 8,
-        crossAxisCount: 3,
+      sliver: PagedSliverGrid(
+        showNewPageProgressIndicatorAsGridChild: false,
+        showNewPageErrorIndicatorAsGridChild: false,
+        showNoMoreItemsIndicatorAsGridChild: false,
+        pagingController: pagingController,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          childAspectRatio: 2 / 4,
+          mainAxisSpacing: 8,
+          crossAxisSpacing: 8,
+          crossAxisCount: 3,
+        ),
+        builderDelegate:
+            getListItemDelegate(Theme.of(context).colorScheme.onSurface),
       ),
-      builderDelegate:
-          getListItemDelegate(Theme.of(context).colorScheme.onSurface),
     );
   }
 
   PagedChildBuilderDelegate<Movie> getListItemDelegate(Color shimmerColor) {
     return PagedChildBuilderDelegate<Movie>(
       itemBuilder: (context, item, index) {
-        return MovieItemView(
-          movie: item,
+        return Builder(
+          builder: (BuildContext context) {
+            return RippleTapView(
+              onTap: () => routeToMovieDetails(context, item.id),
+              child: MovieItemView(
+                movie: item,
+              ),
+            );
+          },
         );
       },
       firstPageProgressIndicatorBuilder: (_) => Wrap(

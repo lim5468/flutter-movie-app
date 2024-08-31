@@ -16,14 +16,12 @@ abstract class MovieApiService {
   @GET('/genre/movie/list')
   Future<GetMovieGenreListResponse> getMovieGenreList({
     @Query('api_key') required String apiKey,
-    @Query('language') String? language = 'en-US',
   });
 
   @GET('/discover/movie')
   Future<GetMovieListResponse> getMoviesByGenre({
     @Query('api_key') required String apiKey,
     @Query('with_genres') required String genreIds,
-    @Query('language') String? language = 'en-US',
     @Query('sort_by') String? sortBy = 'primary_release_date.des',
     @Query('page') int? page,
   });
@@ -32,7 +30,6 @@ abstract class MovieApiService {
   Future<GetMovieListResponse> getMoviesByCategory({
     @Path() required String category,
     @Query('api_key') required String apiKey,
-    @Query('language') String? language = 'en-US',
     @Query('page') int? page,
   });
 
@@ -40,39 +37,32 @@ abstract class MovieApiService {
   Future<MovieDetails> getMovieDetails({
     @Path() required String movieId,
     @Query('api_key') required String apiKey,
-    @Query('language') String? language = 'en-US',
-    @Query('append_to_response') String? appended = 'videos,credits',
   });
 
   @GET('/movie/{movieId}/credits')
   Future<GetMovieCreditsResponse> getMovieCredits({
     @Path() required String movieId,
     @Query('api_key') required String apiKey,
-    @Query('language') String? language = 'en-US',
-    @Query('append_to_response') String? appended = 'videos,credits',
   });
 
   @GET('/movie/{movieId}/videos')
   Future<GetMovieVideosResponse> getMovieVideos({
     @Path() required String movieId,
     @Query('api_key') required String apiKey,
-    @Query('language') String? language = 'en-US',
-    @Query('append_to_response') String? appended = 'videos,credits',
+    @Query('language') String? language = 'en',
   });
 
   @GET('/movie/{movieId}/images')
   Future<GetMovieImagesResponse> getMovieImages({
     @Path() required String movieId,
     @Query('api_key') required String apiKey,
-    @Query('language') String? language = 'en-US',
-    @Query('append_to_response') String? appended = 'videos,credits',
+    @Query('language') String? language = 'en',
   });
 
   @GET('/search/movie')
   Future<GetMovieListResponse> searchMovies({
     @Query('api_key') required String apiKey,
     @Query('query') required String query,
-    @Query('language') String? language = 'en-US',
     @Query('page') int? page,
   });
 }

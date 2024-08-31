@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'discover_state.dart';
+part of 'movie_details_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,20 +15,22 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$DiscoverState {
+mixin _$MovieDetailsState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(
-            List<MovieGenre> movieGenres,
-            List<MovieGenre> selectedMovieGenres,
-            bool isMovieListLoading,
-            String? movieGenreListError,
-            String? movieListError,
-            List<Movie> movies,
-            int? lastFetchMoviesSize,
-            int? lastFetchMoviesPage)
+            MovieDetails movieDetails,
+            bool isImagesLoading,
+            bool isVideosLoading,
+            bool isCastLoading,
+            List<MovieImage> images,
+            List<Video> videos,
+            List<Cast> cast,
+            String? isImagesListError,
+            String? isVideosListError,
+            String? isCastListError)
         loaded,
     required TResult Function(String message) error,
   }) =>
@@ -38,14 +40,16 @@ mixin _$DiscoverState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(
-            List<MovieGenre> movieGenres,
-            List<MovieGenre> selectedMovieGenres,
-            bool isMovieListLoading,
-            String? movieGenreListError,
-            String? movieListError,
-            List<Movie> movies,
-            int? lastFetchMoviesSize,
-            int? lastFetchMoviesPage)?
+            MovieDetails movieDetails,
+            bool isImagesLoading,
+            bool isVideosLoading,
+            bool isCastLoading,
+            List<MovieImage> images,
+            List<Video> videos,
+            List<Cast> cast,
+            String? isImagesListError,
+            String? isVideosListError,
+            String? isCastListError)?
         loaded,
     TResult? Function(String message)? error,
   }) =>
@@ -55,14 +59,16 @@ mixin _$DiscoverState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(
-            List<MovieGenre> movieGenres,
-            List<MovieGenre> selectedMovieGenres,
-            bool isMovieListLoading,
-            String? movieGenreListError,
-            String? movieListError,
-            List<Movie> movies,
-            int? lastFetchMoviesSize,
-            int? lastFetchMoviesPage)?
+            MovieDetails movieDetails,
+            bool isImagesLoading,
+            bool isVideosLoading,
+            bool isCastLoading,
+            List<MovieImage> images,
+            List<Video> videos,
+            List<Cast> cast,
+            String? isImagesListError,
+            String? isVideosListError,
+            String? isCastListError)?
         loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
@@ -96,23 +102,23 @@ mixin _$DiscoverState {
 }
 
 /// @nodoc
-abstract class $DiscoverStateCopyWith<$Res> {
-  factory $DiscoverStateCopyWith(
-          DiscoverState value, $Res Function(DiscoverState) then) =
-      _$DiscoverStateCopyWithImpl<$Res, DiscoverState>;
+abstract class $MovieDetailsStateCopyWith<$Res> {
+  factory $MovieDetailsStateCopyWith(
+          MovieDetailsState value, $Res Function(MovieDetailsState) then) =
+      _$MovieDetailsStateCopyWithImpl<$Res, MovieDetailsState>;
 }
 
 /// @nodoc
-class _$DiscoverStateCopyWithImpl<$Res, $Val extends DiscoverState>
-    implements $DiscoverStateCopyWith<$Res> {
-  _$DiscoverStateCopyWithImpl(this._value, this._then);
+class _$MovieDetailsStateCopyWithImpl<$Res, $Val extends MovieDetailsState>
+    implements $MovieDetailsStateCopyWith<$Res> {
+  _$MovieDetailsStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of DiscoverState
+  /// Create a copy of MovieDetailsState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -125,13 +131,13 @@ abstract class _$$InitialImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$InitialImplCopyWithImpl<$Res>
-    extends _$DiscoverStateCopyWithImpl<$Res, _$InitialImpl>
+    extends _$MovieDetailsStateCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DiscoverState
+  /// Create a copy of MovieDetailsState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -142,7 +148,7 @@ class _$InitialImpl implements Initial {
 
   @override
   String toString() {
-    return 'DiscoverState.initial()';
+    return 'MovieDetailsState.initial()';
   }
 
   @override
@@ -160,14 +166,16 @@ class _$InitialImpl implements Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(
-            List<MovieGenre> movieGenres,
-            List<MovieGenre> selectedMovieGenres,
-            bool isMovieListLoading,
-            String? movieGenreListError,
-            String? movieListError,
-            List<Movie> movies,
-            int? lastFetchMoviesSize,
-            int? lastFetchMoviesPage)
+            MovieDetails movieDetails,
+            bool isImagesLoading,
+            bool isVideosLoading,
+            bool isCastLoading,
+            List<MovieImage> images,
+            List<Video> videos,
+            List<Cast> cast,
+            String? isImagesListError,
+            String? isVideosListError,
+            String? isCastListError)
         loaded,
     required TResult Function(String message) error,
   }) {
@@ -180,14 +188,16 @@ class _$InitialImpl implements Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(
-            List<MovieGenre> movieGenres,
-            List<MovieGenre> selectedMovieGenres,
-            bool isMovieListLoading,
-            String? movieGenreListError,
-            String? movieListError,
-            List<Movie> movies,
-            int? lastFetchMoviesSize,
-            int? lastFetchMoviesPage)?
+            MovieDetails movieDetails,
+            bool isImagesLoading,
+            bool isVideosLoading,
+            bool isCastLoading,
+            List<MovieImage> images,
+            List<Video> videos,
+            List<Cast> cast,
+            String? isImagesListError,
+            String? isVideosListError,
+            String? isCastListError)?
         loaded,
     TResult? Function(String message)? error,
   }) {
@@ -200,14 +210,16 @@ class _$InitialImpl implements Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(
-            List<MovieGenre> movieGenres,
-            List<MovieGenre> selectedMovieGenres,
-            bool isMovieListLoading,
-            String? movieGenreListError,
-            String? movieListError,
-            List<Movie> movies,
-            int? lastFetchMoviesSize,
-            int? lastFetchMoviesPage)?
+            MovieDetails movieDetails,
+            bool isImagesLoading,
+            bool isVideosLoading,
+            bool isCastLoading,
+            List<MovieImage> images,
+            List<Video> videos,
+            List<Cast> cast,
+            String? isImagesListError,
+            String? isVideosListError,
+            String? isCastListError)?
         loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
@@ -256,7 +268,7 @@ class _$InitialImpl implements Initial {
   }
 }
 
-abstract class Initial implements DiscoverState {
+abstract class Initial implements MovieDetailsState {
   const factory Initial() = _$InitialImpl;
 }
 
@@ -269,13 +281,13 @@ abstract class _$$LoadingImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$DiscoverStateCopyWithImpl<$Res, _$LoadingImpl>
+    extends _$MovieDetailsStateCopyWithImpl<$Res, _$LoadingImpl>
     implements _$$LoadingImplCopyWith<$Res> {
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DiscoverState
+  /// Create a copy of MovieDetailsState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -286,7 +298,7 @@ class _$LoadingImpl implements Loading {
 
   @override
   String toString() {
-    return 'DiscoverState.loading()';
+    return 'MovieDetailsState.loading()';
   }
 
   @override
@@ -304,14 +316,16 @@ class _$LoadingImpl implements Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(
-            List<MovieGenre> movieGenres,
-            List<MovieGenre> selectedMovieGenres,
-            bool isMovieListLoading,
-            String? movieGenreListError,
-            String? movieListError,
-            List<Movie> movies,
-            int? lastFetchMoviesSize,
-            int? lastFetchMoviesPage)
+            MovieDetails movieDetails,
+            bool isImagesLoading,
+            bool isVideosLoading,
+            bool isCastLoading,
+            List<MovieImage> images,
+            List<Video> videos,
+            List<Cast> cast,
+            String? isImagesListError,
+            String? isVideosListError,
+            String? isCastListError)
         loaded,
     required TResult Function(String message) error,
   }) {
@@ -324,14 +338,16 @@ class _$LoadingImpl implements Loading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(
-            List<MovieGenre> movieGenres,
-            List<MovieGenre> selectedMovieGenres,
-            bool isMovieListLoading,
-            String? movieGenreListError,
-            String? movieListError,
-            List<Movie> movies,
-            int? lastFetchMoviesSize,
-            int? lastFetchMoviesPage)?
+            MovieDetails movieDetails,
+            bool isImagesLoading,
+            bool isVideosLoading,
+            bool isCastLoading,
+            List<MovieImage> images,
+            List<Video> videos,
+            List<Cast> cast,
+            String? isImagesListError,
+            String? isVideosListError,
+            String? isCastListError)?
         loaded,
     TResult? Function(String message)? error,
   }) {
@@ -344,14 +360,16 @@ class _$LoadingImpl implements Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(
-            List<MovieGenre> movieGenres,
-            List<MovieGenre> selectedMovieGenres,
-            bool isMovieListLoading,
-            String? movieGenreListError,
-            String? movieListError,
-            List<Movie> movies,
-            int? lastFetchMoviesSize,
-            int? lastFetchMoviesPage)?
+            MovieDetails movieDetails,
+            bool isImagesLoading,
+            bool isVideosLoading,
+            bool isCastLoading,
+            List<MovieImage> images,
+            List<Video> videos,
+            List<Cast> cast,
+            String? isImagesListError,
+            String? isVideosListError,
+            String? isCastListError)?
         loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
@@ -400,7 +418,7 @@ class _$LoadingImpl implements Loading {
   }
 }
 
-abstract class Loading implements DiscoverState {
+abstract class Loading implements MovieDetailsState {
   const factory Loading() = _$LoadingImpl;
 }
 
@@ -411,72 +429,96 @@ abstract class _$$LoadedImplCopyWith<$Res> {
       __$$LoadedImplCopyWithImpl<$Res>;
   @useResult
   $Res call(
-      {List<MovieGenre> movieGenres,
-      List<MovieGenre> selectedMovieGenres,
-      bool isMovieListLoading,
-      String? movieGenreListError,
-      String? movieListError,
-      List<Movie> movies,
-      int? lastFetchMoviesSize,
-      int? lastFetchMoviesPage});
+      {MovieDetails movieDetails,
+      bool isImagesLoading,
+      bool isVideosLoading,
+      bool isCastLoading,
+      List<MovieImage> images,
+      List<Video> videos,
+      List<Cast> cast,
+      String? isImagesListError,
+      String? isVideosListError,
+      String? isCastListError});
+
+  $MovieDetailsCopyWith<$Res> get movieDetails;
 }
 
 /// @nodoc
 class __$$LoadedImplCopyWithImpl<$Res>
-    extends _$DiscoverStateCopyWithImpl<$Res, _$LoadedImpl>
+    extends _$MovieDetailsStateCopyWithImpl<$Res, _$LoadedImpl>
     implements _$$LoadedImplCopyWith<$Res> {
   __$$LoadedImplCopyWithImpl(
       _$LoadedImpl _value, $Res Function(_$LoadedImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DiscoverState
+  /// Create a copy of MovieDetailsState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? movieGenres = null,
-    Object? selectedMovieGenres = null,
-    Object? isMovieListLoading = null,
-    Object? movieGenreListError = freezed,
-    Object? movieListError = freezed,
-    Object? movies = null,
-    Object? lastFetchMoviesSize = freezed,
-    Object? lastFetchMoviesPage = freezed,
+    Object? movieDetails = null,
+    Object? isImagesLoading = null,
+    Object? isVideosLoading = null,
+    Object? isCastLoading = null,
+    Object? images = null,
+    Object? videos = null,
+    Object? cast = null,
+    Object? isImagesListError = freezed,
+    Object? isVideosListError = freezed,
+    Object? isCastListError = freezed,
   }) {
     return _then(_$LoadedImpl(
-      movieGenres: null == movieGenres
-          ? _value._movieGenres
-          : movieGenres // ignore: cast_nullable_to_non_nullable
-              as List<MovieGenre>,
-      selectedMovieGenres: null == selectedMovieGenres
-          ? _value._selectedMovieGenres
-          : selectedMovieGenres // ignore: cast_nullable_to_non_nullable
-              as List<MovieGenre>,
-      isMovieListLoading: null == isMovieListLoading
-          ? _value.isMovieListLoading
-          : isMovieListLoading // ignore: cast_nullable_to_non_nullable
+      movieDetails: null == movieDetails
+          ? _value.movieDetails
+          : movieDetails // ignore: cast_nullable_to_non_nullable
+              as MovieDetails,
+      isImagesLoading: null == isImagesLoading
+          ? _value.isImagesLoading
+          : isImagesLoading // ignore: cast_nullable_to_non_nullable
               as bool,
-      movieGenreListError: freezed == movieGenreListError
-          ? _value.movieGenreListError
-          : movieGenreListError // ignore: cast_nullable_to_non_nullable
+      isVideosLoading: null == isVideosLoading
+          ? _value.isVideosLoading
+          : isVideosLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isCastLoading: null == isCastLoading
+          ? _value.isCastLoading
+          : isCastLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      images: null == images
+          ? _value._images
+          : images // ignore: cast_nullable_to_non_nullable
+              as List<MovieImage>,
+      videos: null == videos
+          ? _value._videos
+          : videos // ignore: cast_nullable_to_non_nullable
+              as List<Video>,
+      cast: null == cast
+          ? _value._cast
+          : cast // ignore: cast_nullable_to_non_nullable
+              as List<Cast>,
+      isImagesListError: freezed == isImagesListError
+          ? _value.isImagesListError
+          : isImagesListError // ignore: cast_nullable_to_non_nullable
               as String?,
-      movieListError: freezed == movieListError
-          ? _value.movieListError
-          : movieListError // ignore: cast_nullable_to_non_nullable
+      isVideosListError: freezed == isVideosListError
+          ? _value.isVideosListError
+          : isVideosListError // ignore: cast_nullable_to_non_nullable
               as String?,
-      movies: null == movies
-          ? _value._movies
-          : movies // ignore: cast_nullable_to_non_nullable
-              as List<Movie>,
-      lastFetchMoviesSize: freezed == lastFetchMoviesSize
-          ? _value.lastFetchMoviesSize
-          : lastFetchMoviesSize // ignore: cast_nullable_to_non_nullable
-              as int?,
-      lastFetchMoviesPage: freezed == lastFetchMoviesPage
-          ? _value.lastFetchMoviesPage
-          : lastFetchMoviesPage // ignore: cast_nullable_to_non_nullable
-              as int?,
+      isCastListError: freezed == isCastListError
+          ? _value.isCastListError
+          : isCastListError // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
+  }
+
+  /// Create a copy of MovieDetailsState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $MovieDetailsCopyWith<$Res> get movieDetails {
+    return $MovieDetailsCopyWith<$Res>(_value.movieDetails, (value) {
+      return _then(_value.copyWith(movieDetails: value));
+    });
   }
 }
 
@@ -484,59 +526,68 @@ class __$$LoadedImplCopyWithImpl<$Res>
 
 class _$LoadedImpl implements Loaded {
   const _$LoadedImpl(
-      {required final List<MovieGenre> movieGenres,
-      required final List<MovieGenre> selectedMovieGenres,
-      this.isMovieListLoading = false,
-      this.movieGenreListError,
-      this.movieListError,
-      final List<Movie> movies = const [],
-      this.lastFetchMoviesSize,
-      this.lastFetchMoviesPage})
-      : _movieGenres = movieGenres,
-        _selectedMovieGenres = selectedMovieGenres,
-        _movies = movies;
+      {required this.movieDetails,
+      this.isImagesLoading = false,
+      this.isVideosLoading = false,
+      this.isCastLoading = false,
+      final List<MovieImage> images = const [],
+      final List<Video> videos = const [],
+      final List<Cast> cast = const [],
+      this.isImagesListError,
+      this.isVideosListError,
+      this.isCastListError})
+      : _images = images,
+        _videos = videos,
+        _cast = cast;
 
-  final List<MovieGenre> _movieGenres;
   @override
-  List<MovieGenre> get movieGenres {
-    if (_movieGenres is EqualUnmodifiableListView) return _movieGenres;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_movieGenres);
-  }
-
-  final List<MovieGenre> _selectedMovieGenres;
-  @override
-  List<MovieGenre> get selectedMovieGenres {
-    if (_selectedMovieGenres is EqualUnmodifiableListView)
-      return _selectedMovieGenres;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_selectedMovieGenres);
-  }
-
+  final MovieDetails movieDetails;
   @override
   @JsonKey()
-  final bool isMovieListLoading;
-  @override
-  final String? movieGenreListError;
-  @override
-  final String? movieListError;
-  final List<Movie> _movies;
+  final bool isImagesLoading;
   @override
   @JsonKey()
-  List<Movie> get movies {
-    if (_movies is EqualUnmodifiableListView) return _movies;
+  final bool isVideosLoading;
+  @override
+  @JsonKey()
+  final bool isCastLoading;
+  final List<MovieImage> _images;
+  @override
+  @JsonKey()
+  List<MovieImage> get images {
+    if (_images is EqualUnmodifiableListView) return _images;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_movies);
+    return EqualUnmodifiableListView(_images);
+  }
+
+  final List<Video> _videos;
+  @override
+  @JsonKey()
+  List<Video> get videos {
+    if (_videos is EqualUnmodifiableListView) return _videos;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_videos);
+  }
+
+  final List<Cast> _cast;
+  @override
+  @JsonKey()
+  List<Cast> get cast {
+    if (_cast is EqualUnmodifiableListView) return _cast;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_cast);
   }
 
   @override
-  final int? lastFetchMoviesSize;
+  final String? isImagesListError;
   @override
-  final int? lastFetchMoviesPage;
+  final String? isVideosListError;
+  @override
+  final String? isCastListError;
 
   @override
   String toString() {
-    return 'DiscoverState.loaded(movieGenres: $movieGenres, selectedMovieGenres: $selectedMovieGenres, isMovieListLoading: $isMovieListLoading, movieGenreListError: $movieGenreListError, movieListError: $movieListError, movies: $movies, lastFetchMoviesSize: $lastFetchMoviesSize, lastFetchMoviesPage: $lastFetchMoviesPage)';
+    return 'MovieDetailsState.loaded(movieDetails: $movieDetails, isImagesLoading: $isImagesLoading, isVideosLoading: $isVideosLoading, isCastLoading: $isCastLoading, images: $images, videos: $videos, cast: $cast, isImagesListError: $isImagesListError, isVideosListError: $isVideosListError, isCastListError: $isCastListError)';
   }
 
   @override
@@ -544,36 +595,40 @@ class _$LoadedImpl implements Loaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoadedImpl &&
-            const DeepCollectionEquality()
-                .equals(other._movieGenres, _movieGenres) &&
-            const DeepCollectionEquality()
-                .equals(other._selectedMovieGenres, _selectedMovieGenres) &&
-            (identical(other.isMovieListLoading, isMovieListLoading) ||
-                other.isMovieListLoading == isMovieListLoading) &&
-            (identical(other.movieGenreListError, movieGenreListError) ||
-                other.movieGenreListError == movieGenreListError) &&
-            (identical(other.movieListError, movieListError) ||
-                other.movieListError == movieListError) &&
-            const DeepCollectionEquality().equals(other._movies, _movies) &&
-            (identical(other.lastFetchMoviesSize, lastFetchMoviesSize) ||
-                other.lastFetchMoviesSize == lastFetchMoviesSize) &&
-            (identical(other.lastFetchMoviesPage, lastFetchMoviesPage) ||
-                other.lastFetchMoviesPage == lastFetchMoviesPage));
+            (identical(other.movieDetails, movieDetails) ||
+                other.movieDetails == movieDetails) &&
+            (identical(other.isImagesLoading, isImagesLoading) ||
+                other.isImagesLoading == isImagesLoading) &&
+            (identical(other.isVideosLoading, isVideosLoading) ||
+                other.isVideosLoading == isVideosLoading) &&
+            (identical(other.isCastLoading, isCastLoading) ||
+                other.isCastLoading == isCastLoading) &&
+            const DeepCollectionEquality().equals(other._images, _images) &&
+            const DeepCollectionEquality().equals(other._videos, _videos) &&
+            const DeepCollectionEquality().equals(other._cast, _cast) &&
+            (identical(other.isImagesListError, isImagesListError) ||
+                other.isImagesListError == isImagesListError) &&
+            (identical(other.isVideosListError, isVideosListError) ||
+                other.isVideosListError == isVideosListError) &&
+            (identical(other.isCastListError, isCastListError) ||
+                other.isCastListError == isCastListError));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(_movieGenres),
-      const DeepCollectionEquality().hash(_selectedMovieGenres),
-      isMovieListLoading,
-      movieGenreListError,
-      movieListError,
-      const DeepCollectionEquality().hash(_movies),
-      lastFetchMoviesSize,
-      lastFetchMoviesPage);
+      movieDetails,
+      isImagesLoading,
+      isVideosLoading,
+      isCastLoading,
+      const DeepCollectionEquality().hash(_images),
+      const DeepCollectionEquality().hash(_videos),
+      const DeepCollectionEquality().hash(_cast),
+      isImagesListError,
+      isVideosListError,
+      isCastListError);
 
-  /// Create a copy of DiscoverState
+  /// Create a copy of MovieDetailsState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -587,26 +642,30 @@ class _$LoadedImpl implements Loaded {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(
-            List<MovieGenre> movieGenres,
-            List<MovieGenre> selectedMovieGenres,
-            bool isMovieListLoading,
-            String? movieGenreListError,
-            String? movieListError,
-            List<Movie> movies,
-            int? lastFetchMoviesSize,
-            int? lastFetchMoviesPage)
+            MovieDetails movieDetails,
+            bool isImagesLoading,
+            bool isVideosLoading,
+            bool isCastLoading,
+            List<MovieImage> images,
+            List<Video> videos,
+            List<Cast> cast,
+            String? isImagesListError,
+            String? isVideosListError,
+            String? isCastListError)
         loaded,
     required TResult Function(String message) error,
   }) {
     return loaded(
-        movieGenres,
-        selectedMovieGenres,
-        isMovieListLoading,
-        movieGenreListError,
-        movieListError,
-        movies,
-        lastFetchMoviesSize,
-        lastFetchMoviesPage);
+        movieDetails,
+        isImagesLoading,
+        isVideosLoading,
+        isCastLoading,
+        images,
+        videos,
+        cast,
+        isImagesListError,
+        isVideosListError,
+        isCastListError);
   }
 
   @override
@@ -615,26 +674,30 @@ class _$LoadedImpl implements Loaded {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(
-            List<MovieGenre> movieGenres,
-            List<MovieGenre> selectedMovieGenres,
-            bool isMovieListLoading,
-            String? movieGenreListError,
-            String? movieListError,
-            List<Movie> movies,
-            int? lastFetchMoviesSize,
-            int? lastFetchMoviesPage)?
+            MovieDetails movieDetails,
+            bool isImagesLoading,
+            bool isVideosLoading,
+            bool isCastLoading,
+            List<MovieImage> images,
+            List<Video> videos,
+            List<Cast> cast,
+            String? isImagesListError,
+            String? isVideosListError,
+            String? isCastListError)?
         loaded,
     TResult? Function(String message)? error,
   }) {
     return loaded?.call(
-        movieGenres,
-        selectedMovieGenres,
-        isMovieListLoading,
-        movieGenreListError,
-        movieListError,
-        movies,
-        lastFetchMoviesSize,
-        lastFetchMoviesPage);
+        movieDetails,
+        isImagesLoading,
+        isVideosLoading,
+        isCastLoading,
+        images,
+        videos,
+        cast,
+        isImagesListError,
+        isVideosListError,
+        isCastListError);
   }
 
   @override
@@ -643,28 +706,32 @@ class _$LoadedImpl implements Loaded {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(
-            List<MovieGenre> movieGenres,
-            List<MovieGenre> selectedMovieGenres,
-            bool isMovieListLoading,
-            String? movieGenreListError,
-            String? movieListError,
-            List<Movie> movies,
-            int? lastFetchMoviesSize,
-            int? lastFetchMoviesPage)?
+            MovieDetails movieDetails,
+            bool isImagesLoading,
+            bool isVideosLoading,
+            bool isCastLoading,
+            List<MovieImage> images,
+            List<Video> videos,
+            List<Cast> cast,
+            String? isImagesListError,
+            String? isVideosListError,
+            String? isCastListError)?
         loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
       return loaded(
-          movieGenres,
-          selectedMovieGenres,
-          isMovieListLoading,
-          movieGenreListError,
-          movieListError,
-          movies,
-          lastFetchMoviesSize,
-          lastFetchMoviesPage);
+          movieDetails,
+          isImagesLoading,
+          isVideosLoading,
+          isCastLoading,
+          images,
+          videos,
+          cast,
+          isImagesListError,
+          isVideosListError,
+          isCastListError);
     }
     return orElse();
   }
@@ -707,27 +774,31 @@ class _$LoadedImpl implements Loaded {
   }
 }
 
-abstract class Loaded implements DiscoverState {
+abstract class Loaded implements MovieDetailsState {
   const factory Loaded(
-      {required final List<MovieGenre> movieGenres,
-      required final List<MovieGenre> selectedMovieGenres,
-      final bool isMovieListLoading,
-      final String? movieGenreListError,
-      final String? movieListError,
-      final List<Movie> movies,
-      final int? lastFetchMoviesSize,
-      final int? lastFetchMoviesPage}) = _$LoadedImpl;
+      {required final MovieDetails movieDetails,
+      final bool isImagesLoading,
+      final bool isVideosLoading,
+      final bool isCastLoading,
+      final List<MovieImage> images,
+      final List<Video> videos,
+      final List<Cast> cast,
+      final String? isImagesListError,
+      final String? isVideosListError,
+      final String? isCastListError}) = _$LoadedImpl;
 
-  List<MovieGenre> get movieGenres;
-  List<MovieGenre> get selectedMovieGenres;
-  bool get isMovieListLoading;
-  String? get movieGenreListError;
-  String? get movieListError;
-  List<Movie> get movies;
-  int? get lastFetchMoviesSize;
-  int? get lastFetchMoviesPage;
+  MovieDetails get movieDetails;
+  bool get isImagesLoading;
+  bool get isVideosLoading;
+  bool get isCastLoading;
+  List<MovieImage> get images;
+  List<Video> get videos;
+  List<Cast> get cast;
+  String? get isImagesListError;
+  String? get isVideosListError;
+  String? get isCastListError;
 
-  /// Create a copy of DiscoverState
+  /// Create a copy of MovieDetailsState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
@@ -745,13 +816,13 @@ abstract class _$$ErrorImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$ErrorImplCopyWithImpl<$Res>
-    extends _$DiscoverStateCopyWithImpl<$Res, _$ErrorImpl>
+    extends _$MovieDetailsStateCopyWithImpl<$Res, _$ErrorImpl>
     implements _$$ErrorImplCopyWith<$Res> {
   __$$ErrorImplCopyWithImpl(
       _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DiscoverState
+  /// Create a copy of MovieDetailsState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -777,7 +848,7 @@ class _$ErrorImpl implements Error {
 
   @override
   String toString() {
-    return 'DiscoverState.error(message: $message)';
+    return 'MovieDetailsState.error(message: $message)';
   }
 
   @override
@@ -791,7 +862,7 @@ class _$ErrorImpl implements Error {
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  /// Create a copy of DiscoverState
+  /// Create a copy of MovieDetailsState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -805,14 +876,16 @@ class _$ErrorImpl implements Error {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(
-            List<MovieGenre> movieGenres,
-            List<MovieGenre> selectedMovieGenres,
-            bool isMovieListLoading,
-            String? movieGenreListError,
-            String? movieListError,
-            List<Movie> movies,
-            int? lastFetchMoviesSize,
-            int? lastFetchMoviesPage)
+            MovieDetails movieDetails,
+            bool isImagesLoading,
+            bool isVideosLoading,
+            bool isCastLoading,
+            List<MovieImage> images,
+            List<Video> videos,
+            List<Cast> cast,
+            String? isImagesListError,
+            String? isVideosListError,
+            String? isCastListError)
         loaded,
     required TResult Function(String message) error,
   }) {
@@ -825,14 +898,16 @@ class _$ErrorImpl implements Error {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(
-            List<MovieGenre> movieGenres,
-            List<MovieGenre> selectedMovieGenres,
-            bool isMovieListLoading,
-            String? movieGenreListError,
-            String? movieListError,
-            List<Movie> movies,
-            int? lastFetchMoviesSize,
-            int? lastFetchMoviesPage)?
+            MovieDetails movieDetails,
+            bool isImagesLoading,
+            bool isVideosLoading,
+            bool isCastLoading,
+            List<MovieImage> images,
+            List<Video> videos,
+            List<Cast> cast,
+            String? isImagesListError,
+            String? isVideosListError,
+            String? isCastListError)?
         loaded,
     TResult? Function(String message)? error,
   }) {
@@ -845,14 +920,16 @@ class _$ErrorImpl implements Error {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(
-            List<MovieGenre> movieGenres,
-            List<MovieGenre> selectedMovieGenres,
-            bool isMovieListLoading,
-            String? movieGenreListError,
-            String? movieListError,
-            List<Movie> movies,
-            int? lastFetchMoviesSize,
-            int? lastFetchMoviesPage)?
+            MovieDetails movieDetails,
+            bool isImagesLoading,
+            bool isVideosLoading,
+            bool isCastLoading,
+            List<MovieImage> images,
+            List<Video> videos,
+            List<Cast> cast,
+            String? isImagesListError,
+            String? isVideosListError,
+            String? isCastListError)?
         loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
@@ -901,12 +978,12 @@ class _$ErrorImpl implements Error {
   }
 }
 
-abstract class Error implements DiscoverState {
+abstract class Error implements MovieDetailsState {
   const factory Error({required final String message}) = _$ErrorImpl;
 
   String get message;
 
-  /// Create a copy of DiscoverState
+  /// Create a copy of MovieDetailsState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>

@@ -33,6 +33,11 @@ class App extends StatelessWidget {
               localizationsDelegates: AppLocalizations.localizationsDelegates,
               supportedLocales: AppLocalizations.supportedLocales,
               home: const LandingPage(),
+              scrollBehavior: ScrollConfiguration.of(context).copyWith(
+                physics: const BouncingScrollPhysics(
+                  parent: AlwaysScrollableScrollPhysics(),
+                ),
+              ),
             );
           },
         );

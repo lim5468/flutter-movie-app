@@ -1,9 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/domain/enum/movie_category.dart';
 import 'package:movie_app/feature/home/bloc/home_bloc.dart';
 import 'package:movie_app/feature/home/bloc/home_event.dart';
 import 'package:movie_app/feature/home/bloc/home_state.dart';
+import 'package:movie_app/navigation/navigation.dart';
 import 'package:movie_app/utils/extensions/string_ext.dart';
 import 'package:movie_app/widgets/full_screen_error_view.dart';
 import 'package:movie_app/widgets/full_screen_loading_view.dart';
@@ -23,35 +25,42 @@ class _HomePageState extends State<HomePage> {
       builder: (context, state) {
         return Scaffold(
           body: SafeArea(
-            child: NestedScrollView(
-              headerSliverBuilder: (context, value) {
-                return [
-                  SliverToBoxAdapter(
-                      child: Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: Text(
-                      'Home'.raw,
-                      style: Theme.of(context)
-                          .textTheme
-                          .displaySmall
-                          ?.copyWith(fontWeight: FontWeight.bold),
+            child: CustomScrollView(
+              slivers: [
+                CupertinoSliverRefreshControl(
+                  onRefresh: () async {
+                    context.read<HomeBloc>().add(const Refresh());
+                  },
+                ),
+                SliverToBoxAdapter(
+                    child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Text(
+                    'Home'.raw,
+                    style: Theme.of(context)
+                        .textTheme
+                        .displaySmall
+                        ?.copyWith(fontWeight: FontWeight.bold),
+                  ),
+                )),
+                switch (state) {
+                  Initial() => SliverToBoxAdapter(child: Container()),
+                  Loading() => const SliverFillRemaining(
+                      hasScrollBody: false, child: FullScreenLoadingView()),
+                  final Loaded state => _LoadedView(
+                      state: state,
                     ),
-                  )),
-                ];
-              },
-              body: switch (state) {
-                Initial() => Container(),
-                Loading() => const FullScreenLoadingView(),
-                final Loaded state => _LoadedView(
-                    state: state,
-                  ),
-                Error(message: final m) => FullScreenErrorView(
-                    message: m,
-                    onRetryClicked: () {
-                      context.read<HomeBloc>().add(const Refresh());
-                    },
-                  ),
-              },
+                  Error(message: final m) => SliverFillRemaining(
+                      hasScrollBody: false,
+                      child: FullScreenErrorView(
+                        message: m,
+                        onRetryClicked: () {
+                          context.read<HomeBloc>().add(const Refresh());
+                        },
+                      ),
+                    ),
+                },
+              ],
             ),
           ),
         );
@@ -68,46 +77,45 @@ class _LoadedView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RefreshIndicator(
-      onRefresh: () async {
-        context.read<HomeBloc>().add(const Refresh());
-      },
-      child: ListView(
-        children: [
-          MovieCategorySectionView(
-            key: state.isNowPlayingListLoading
-                ? null
-                : ValueKey(MovieCategory.nowPlaying.name),
-            category: MovieCategory.nowPlaying,
-            movies: state.nowPlayingMovies,
-            isLoading: state.isNowPlayingListLoading,
-          ),
-          MovieCategorySectionView(
-            key: state.isNowPlayingListLoading
-                ? null
-                : ValueKey(MovieCategory.popular.name),
-            category: MovieCategory.popular,
-            movies: state.popularMovies,
-            isLoading: state.isPopularListLoading,
-          ),
-          MovieCategorySectionView(
-            key: state.isNowPlayingListLoading
-                ? null
-                : ValueKey(MovieCategory.topRated.name),
-            category: MovieCategory.topRated,
-            movies: state.topRatedMovies,
-            isLoading: state.isTopRatedListLoading,
-          ),
-          MovieCategorySectionView(
-            key: state.isNowPlayingListLoading
-                ? null
-                : ValueKey(MovieCategory.upcoming.name),
-            category: MovieCategory.upcoming,
-            movies: state.upcomingMovies,
-            isLoading: state.isUpcomingListLoading,
-          ),
-        ],
-      ),
+    return SliverList.list(
+      children: [
+        MovieCategorySectionView(
+          key: state.isNowPlayingListLoading
+              ? null
+              : ValueKey(MovieCategory.nowPlaying.name),
+          category: MovieCategory.nowPlaying,
+          movies: state.nowPlayingMovies,
+          isLoading: state.isNowPlayingListLoading,
+          onMovieItemClicked: (movie) => routeToMovieDetails(context, movie.id),
+        ),
+        MovieCategorySectionView(
+          key: state.isNowPlayingListLoading
+              ? null
+              : ValueKey(MovieCategory.popular.name),
+          category: MovieCategory.popular,
+          movies: state.popularMovies,
+          isLoading: state.isPopularListLoading,
+          onMovieItemClicked: (movie) => routeToMovieDetails(context, movie.id),
+        ),
+        MovieCategorySectionView(
+          key: state.isNowPlayingListLoading
+              ? null
+              : ValueKey(MovieCategory.topRated.name),
+          category: MovieCategory.topRated,
+          movies: state.topRatedMovies,
+          isLoading: state.isTopRatedListLoading,
+          onMovieItemClicked: (movie) => routeToMovieDetails(context, movie.id),
+        ),
+        MovieCategorySectionView(
+          key: state.isNowPlayingListLoading
+              ? null
+              : ValueKey(MovieCategory.upcoming.name),
+          category: MovieCategory.upcoming,
+          movies: state.upcomingMovies,
+          isLoading: state.isUpcomingListLoading,
+          onMovieItemClicked: (movie) => routeToMovieDetails(context, movie.id),
+        ),
+      ],
     );
   }
 }

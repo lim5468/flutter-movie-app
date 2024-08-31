@@ -22,6 +22,7 @@ import '../domain/usecase/get_movies_by_genre_usecase.dart' as _i356;
 import '../domain/usecase/search_movies_usecase.dart' as _i565;
 import '../feature/discover/bloc/discover_bloc.dart' as _i741;
 import '../feature/home/bloc/home_bloc.dart' as _i1071;
+import '../feature/movie_details/bloc/movie_details_bloc.dart' as _i221;
 import '../feature/search/bloc/search_bloc.dart' as _i314;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -55,6 +56,12 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i314.SearchBloc(gh<_i565.SearchMoviesUseCase>()));
     gh.factory<_i1071.HomeBloc>(
         () => _i1071.HomeBloc(gh<_i696.GetMoviesByCategoryUseCase>()));
+    gh.factory<_i221.MovieDetailsBloc>(() => _i221.MovieDetailsBloc(
+          gh<_i103.GetMovieDetailsUseCase>(),
+          gh<_i883.GetMoviePostersUseCase>(),
+          gh<_i46.GetMovieVideosUseCase>(),
+          gh<_i249.GetMovieCastsUseCase>(),
+        ));
     gh.factory<_i741.DiscoverBloc>(() => _i741.DiscoverBloc(
           gh<_i751.GetMovieGenresUseCase>(),
           gh<_i356.GetMoviesByGenreUseCase>(),

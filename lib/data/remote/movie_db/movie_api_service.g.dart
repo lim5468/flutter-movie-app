@@ -22,16 +22,10 @@ class _MovieApiService implements MovieApiService {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<GetMovieGenreListResponse> getMovieGenreList({
-    required String apiKey,
-    String? language = 'en-US',
-  }) async {
+  Future<GetMovieGenreListResponse> getMovieGenreList(
+      {required String apiKey}) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{
-      r'api_key': apiKey,
-      r'language': language,
-    };
-    queryParameters.removeWhere((k, v) => v == null);
+    final queryParameters = <String, dynamic>{r'api_key': apiKey};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<GetMovieGenreListResponse>(Options(
@@ -65,7 +59,6 @@ class _MovieApiService implements MovieApiService {
   Future<GetMovieListResponse> getMoviesByGenre({
     required String apiKey,
     required String genreIds,
-    String? language = 'en-US',
     String? sortBy = 'primary_release_date.des',
     int? page,
   }) async {
@@ -73,7 +66,6 @@ class _MovieApiService implements MovieApiService {
     final queryParameters = <String, dynamic>{
       r'api_key': apiKey,
       r'with_genres': genreIds,
-      r'language': language,
       r'sort_by': sortBy,
       r'page': page,
     };
@@ -111,13 +103,11 @@ class _MovieApiService implements MovieApiService {
   Future<GetMovieListResponse> getMoviesByCategory({
     required String category,
     required String apiKey,
-    String? language = 'en-US',
     int? page,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'api_key': apiKey,
-      r'language': language,
       r'page': page,
     };
     queryParameters.removeWhere((k, v) => v == null);
@@ -154,16 +144,9 @@ class _MovieApiService implements MovieApiService {
   Future<MovieDetails> getMovieDetails({
     required String movieId,
     required String apiKey,
-    String? language = 'en-US',
-    String? appended = 'videos,credits',
   }) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{
-      r'api_key': apiKey,
-      r'language': language,
-      r'append_to_response': appended,
-    };
-    queryParameters.removeWhere((k, v) => v == null);
+    final queryParameters = <String, dynamic>{r'api_key': apiKey};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<MovieDetails>(Options(
@@ -197,16 +180,9 @@ class _MovieApiService implements MovieApiService {
   Future<GetMovieCreditsResponse> getMovieCredits({
     required String movieId,
     required String apiKey,
-    String? language = 'en-US',
-    String? appended = 'videos,credits',
   }) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{
-      r'api_key': apiKey,
-      r'language': language,
-      r'append_to_response': appended,
-    };
-    queryParameters.removeWhere((k, v) => v == null);
+    final queryParameters = <String, dynamic>{r'api_key': apiKey};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<GetMovieCreditsResponse>(Options(
@@ -240,14 +216,12 @@ class _MovieApiService implements MovieApiService {
   Future<GetMovieVideosResponse> getMovieVideos({
     required String movieId,
     required String apiKey,
-    String? language = 'en-US',
-    String? appended = 'videos,credits',
+    String? language = 'en',
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'api_key': apiKey,
       r'language': language,
-      r'append_to_response': appended,
     };
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
@@ -283,14 +257,12 @@ class _MovieApiService implements MovieApiService {
   Future<GetMovieImagesResponse> getMovieImages({
     required String movieId,
     required String apiKey,
-    String? language = 'en-US',
-    String? appended = 'videos,credits',
+    String? language = 'en',
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'api_key': apiKey,
       r'language': language,
-      r'append_to_response': appended,
     };
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
@@ -326,14 +298,12 @@ class _MovieApiService implements MovieApiService {
   Future<GetMovieListResponse> searchMovies({
     required String apiKey,
     required String query,
-    String? language = 'en-US',
     int? page,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'api_key': apiKey,
       r'query': query,
-      r'language': language,
       r'page': page,
     };
     queryParameters.removeWhere((k, v) => v == null);

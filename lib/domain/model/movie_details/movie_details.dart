@@ -13,6 +13,7 @@ class MovieDetails with _$MovieDetails {
     @JsonKey(name: 'poster_path') required String? posterPath,
     @JsonKey(name: 'release_date') required String? releaseDate,
     @JsonKey(name: 'overview') required String? overview,
+    @JsonKey(name: 'runtime') required int? runtime,
   }) = _MovieDetails;
 
   factory MovieDetails.fromJson(Map<String, dynamic> json) =>
