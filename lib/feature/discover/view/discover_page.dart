@@ -55,6 +55,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
             child: CustomScrollView(
               slivers: [
                 CupertinoSliverRefreshControl(
+                  refreshTriggerPullDistance: 125,
                   onRefresh: () async {
                     context.read<DiscoverBloc>().add(const Refresh());
                   },

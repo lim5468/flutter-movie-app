@@ -28,6 +28,7 @@ class _HomePageState extends State<HomePage> {
             child: CustomScrollView(
               slivers: [
                 CupertinoSliverRefreshControl(
+                  refreshTriggerPullDistance: 125,
                   onRefresh: () async {
                     context.read<HomeBloc>().add(const Refresh());
                   },

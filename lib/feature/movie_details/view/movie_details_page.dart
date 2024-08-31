@@ -31,6 +31,7 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
           body: CustomScrollView(
             slivers: [
               CupertinoSliverRefreshControl(
+                refreshTriggerPullDistance: 125,
                 onRefresh: () async {
                   context.read<MovieDetailsBloc>().add(const Refresh());
                 },
