@@ -32,11 +32,11 @@ jobs:
           echo "TMDB_API_KEY=${{ secrets.TMDB_API_KEY }}" >> .env
 
       - name: Decode and save keystore
-        run: echo ${{ secrets.ANDROID_KEYSTORE_BASE64 }} | base64 --decode > keystore.jks
+        run: echo ${{ secrets.ANDROID_KEYSTORE_BASE64 }} | base64 --decode > android/app/keystore.jks
 
       - name: Set up environment
         run: |
-          echo "ANDROID_KEYSTORE_PATH=/keystore.jks" >> $GITHUB_ENV
+          echo "ANDROID_KEYSTORE_PATH=keystore.jks" >> $GITHUB_ENV
           echo "ANDROID_KEYSTORE_ALIAS=${{ secrets.ANDROID_KEY_ALIAS }}" >> $GITHUB_ENV
           echo "ANDROID_KEYSTORE_PASSWORD=${{ secrets.ANDROID_KEYSTORE_PASSWORD }}" >> $GITHUB_ENV
           echo "ANDROID_KEYSTORE_PRIVATE_KEY_PASSWORD=${{ secrets.ANDROID_KEY_PASSWORD }}" >> $GITHUB_ENV
