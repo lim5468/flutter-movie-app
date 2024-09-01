@@ -12,6 +12,26 @@ https://developer.themoviedb.org/docs/getting-started
 
 ---
 
+## Screenshots 📱
+
+<p>
+<img src="https://github.com/lim5468/flutter-movie-app/blob/main/screenshots/dark_01.png" width="250" />
+<img src="https://github.com/lim5468/flutter-movie-app/blob/main/screenshots/dark_02.png" width="250" />
+<img src="https://github.com/lim5468/flutter-movie-app/blob/main/screenshots/dark_03.png" width="250" />
+<img src="https://github.com/lim5468/flutter-movie-app/blob/main/screenshots/dark_04.png" width="250" />
+<img src="https://github.com/lim5468/flutter-movie-app/blob/main/screenshots/dark_05.png" width="250" />
+</p>
+
+<p>
+<img src="https://github.com/lim5468/flutter-movie-app/blob/main/screenshots/light_01.png" width="250" />
+<img src="https://github.com/lim5468/flutter-movie-app/blob/main/screenshots/light_02.png" width="250" />
+<img src="https://github.com/lim5468/flutter-movie-app/blob/main/screenshots/light_03.png" width="250" />
+<img src="https://github.com/lim5468/flutter-movie-app/blob/main/screenshots/light_04.png" width="250" />
+<img src="https://github.com/lim5468/flutter-movie-app/blob/main/screenshots/light_05.png" width="250" />
+</p>
+
+---
+
 ## Getting Started 🚀
 
 This project uses flutter_dotenv to manage secrets
