@@ -27,8 +27,9 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Build APK
-        run: flutter build apk --release --flavor production -t lib/main_production.dart
+      - name: Set up .env variables
+        run: |
+          echo "TMDB_API_KEY=${{ secrets.TMDB_API_KEY }}" >> .env
 
       - name: Decode and save keystore
         run: echo ${{ secrets.ANDROID_KEYSTORE_BASE64 }} | base64 --decode > keystore.jks
@@ -39,6 +40,9 @@ jobs:
           echo "ANDROID_KEYSTORE_ALIAS=${{ secrets.ANDROID_KEY_ALIAS }}" >> $GITHUB_ENV
           echo "ANDROID_KEYSTORE_PASSWORD=${{ secrets.ANDROID_KEYSTORE_PASSWORD }}" >> $GITHUB_ENV
           echo "ANDROID_KEYSTORE_PRIVATE_KEY_PASSWORD=${{ secrets.ANDROID_KEY_PASSWORD }}" >> $GITHUB_ENV
+
+      - name: Build APK
+        run: flutter build apk --release --flavor production -t lib/main_production.dart
 
       - name: Upload APK
         uses: actions/upload-artifact@v3
