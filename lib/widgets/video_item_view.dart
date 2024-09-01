@@ -38,6 +38,7 @@ class VideoItemView extends StatelessWidget {
                 child: Icon(
                   Icons.play_arrow_rounded,
                   size: constraints.maxHeight / 3,
+                  color: Colors.white,
                 ),
               ),
             ],
