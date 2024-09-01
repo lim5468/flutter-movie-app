@@ -44,9 +44,14 @@ class _YoutubePlayerPageState extends State<YoutubePlayerPage> {
   Widget build(BuildContext context) {
     return YoutubePlayer(
       topActions: [
-        IconButton(
-          onPressed: () => Navigator.of(context).pop(),
-          icon: const Icon(Icons.close),
+        SafeArea(
+          child: IconButton(
+            onPressed: () => Navigator.of(context).pop(),
+            icon: const Icon(
+              Icons.close,
+              color: Colors.white,
+            ),
+          ),
         ),
       ],
       controller: _controller,
