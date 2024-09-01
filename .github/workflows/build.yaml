@@ -1,0 +1,44 @@
+name: Flutter Build APK
+
+on:
+  push:
+    branches:
+      - main # Trigger the workflow on push to the main branch
+  pull_request:
+    branches:
+      - main # Trigger the workflow on pull requests to the main branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 'stable'
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Build APK
+        run: flutter build apk --release --flavor production -t lib/main_production.dart
+
+      - name: Decode and save keystore
+        run: echo ${{ secrets.ANDROID_KEYSTORE_BASE64 }} | base64 --decode > keystore.jks
+
+      - name: Set up environment
+        run: |
+          echo "ANDROID_KEYSTORE_PATH=keystore.jks" >> $GITHUB_ENV
+          echo "ANDROID_KEYSTORE_ALIAS=${{ secrets.ANDROID_KEY_ALIAS }}" >> $GITHUB_ENV
+          echo "ANDROID_KEYSTORE_PASSWORD=${{ secrets.ANDROID_KEYSTORE_PASSWORD }}" >> $GITHUB_ENV
+          echo "ANDROID_KEYSTORE_PRIVATE_KEY_PASSWORD=${{ secrets.ANDROID_KEY_PASSWORD }}" >> $GITHUB_ENV
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: app-release.apk
+          path: build/app/outputs/flutter-apk/app-release.apk
