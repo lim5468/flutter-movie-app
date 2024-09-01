@@ -21,7 +21,7 @@ https://pub.dev/packages/flutter_dotenv
 Create a .env file with your TMDB API to get started.
 
 ```env
-TMDB_API_KEY=e6fac24d22daa4a03f3427b9e229a0b9
+TMDB_API_KEY=[YOUR_API_KEY]
 ```
 
 This project contains 3 flavors:
