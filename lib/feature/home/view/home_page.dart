@@ -19,6 +19,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  PageStorageBucket pageStorageBucket = PageStorageBucket();
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<HomeBloc, HomeState>(
@@ -30,6 +32,7 @@ class _HomePageState extends State<HomePage> {
                 CupertinoSliverRefreshControl(
                   refreshTriggerPullDistance: 125,
                   onRefresh: () async {
+                    pageStorageBucket = PageStorageBucket();
                     context.read<HomeBloc>().add(const Refresh());
                   },
                 ),
@@ -50,6 +53,7 @@ class _HomePageState extends State<HomePage> {
                       hasScrollBody: false, child: FullScreenLoadingView()),
                   final Loaded state => _LoadedView(
                       state: state,
+                      pageStorageBucket: pageStorageBucket,
                     ),
                   Error(message: final m) => SliverFillRemaining(
                       hasScrollBody: false,
@@ -72,51 +76,63 @@ class _HomePageState extends State<HomePage> {
 }
 
 class _LoadedView extends StatelessWidget {
-  const _LoadedView({required this.state, super.key});
+  const _LoadedView({
+    required this.state,
+    required this.pageStorageBucket,
+    super.key,
+  });
 
   final Loaded state;
+  final PageStorageBucket pageStorageBucket;
 
   @override
   Widget build(BuildContext context) {
-    return SliverList.list(
-      children: [
-        MovieCategorySectionView(
-          key: state.isNowPlayingListLoading
-              ? null
-              : ValueKey(MovieCategory.nowPlaying.name),
-          category: MovieCategory.nowPlaying,
-          movies: state.nowPlayingMovies,
-          isLoading: state.isNowPlayingListLoading,
-          onMovieItemClicked: (movie) => routeToMovieDetails(context, movie.id),
-        ),
-        MovieCategorySectionView(
-          key: state.isNowPlayingListLoading
-              ? null
-              : ValueKey(MovieCategory.popular.name),
-          category: MovieCategory.popular,
-          movies: state.popularMovies,
-          isLoading: state.isPopularListLoading,
-          onMovieItemClicked: (movie) => routeToMovieDetails(context, movie.id),
-        ),
-        MovieCategorySectionView(
-          key: state.isNowPlayingListLoading
-              ? null
-              : ValueKey(MovieCategory.topRated.name),
-          category: MovieCategory.topRated,
-          movies: state.topRatedMovies,
-          isLoading: state.isTopRatedListLoading,
-          onMovieItemClicked: (movie) => routeToMovieDetails(context, movie.id),
-        ),
-        MovieCategorySectionView(
-          key: state.isNowPlayingListLoading
-              ? null
-              : ValueKey(MovieCategory.upcoming.name),
-          category: MovieCategory.upcoming,
-          movies: state.upcomingMovies,
-          isLoading: state.isUpcomingListLoading,
-          onMovieItemClicked: (movie) => routeToMovieDetails(context, movie.id),
-        ),
-      ],
+    return PageStorage(
+      bucket: pageStorageBucket,
+      child: SliverList.list(
+        children: [
+          MovieCategorySectionView(
+            key: state.isNowPlayingListLoading
+                ? null
+                : PageStorageKey(MovieCategory.nowPlaying.name),
+            category: MovieCategory.nowPlaying,
+            movies: state.nowPlayingMovies,
+            isLoading: state.isNowPlayingListLoading,
+            onMovieItemClicked: (movie) =>
+                routeToMovieDetails(context, movie.id),
+          ),
+          MovieCategorySectionView(
+            key: state.isPopularListLoading
+                ? null
+                : PageStorageKey(MovieCategory.popular.name),
+            category: MovieCategory.popular,
+            movies: state.popularMovies,
+            isLoading: state.isPopularListLoading,
+            onMovieItemClicked: (movie) =>
+                routeToMovieDetails(context, movie.id),
+          ),
+          MovieCategorySectionView(
+            key: state.isTopRatedListLoading
+                ? null
+                : PageStorageKey(MovieCategory.topRated.name),
+            category: MovieCategory.topRated,
+            movies: state.topRatedMovies,
+            isLoading: state.isTopRatedListLoading,
+            onMovieItemClicked: (movie) =>
+                routeToMovieDetails(context, movie.id),
+          ),
+          MovieCategorySectionView(
+            key: state.isUpcomingListLoading
+                ? null
+                : PageStorageKey(MovieCategory.upcoming.name),
+            category: MovieCategory.upcoming,
+            movies: state.upcomingMovies,
+            isLoading: state.isUpcomingListLoading,
+            onMovieItemClicked: (movie) =>
+                routeToMovieDetails(context, movie.id),
+          ),
+        ],
+      ),
     );
   }
 }
