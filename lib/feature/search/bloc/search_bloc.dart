@@ -39,7 +39,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     UpdateQuery event,
     Emitter<SearchState> emitter,
   ) async {
-    var currentState = state;
+    final currentState = state;
 
     if (currentState is! Loaded) {
       return;
@@ -61,8 +61,6 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       return;
     }
 
-    print("seach history current: ${currentState.queryHistory}");
-
     final queryHistory = [...currentState.queryHistory]
       ..remove(query)
       ..insert(0, query);
@@ -71,44 +69,19 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
     await box.put('searchHistory', filteredQueryHistory);
 
-    print("seach history: $filteredQueryHistory");
-
     emitter(
       currentState.copyWith(
         isSearching: true,
         searchError: null,
+        movies: const [],
         currentQuery: query,
         queryHistory: filteredQueryHistory,
+        lastSearchResultsPage: null,
+        lastSearchResultsSize: null,
       ),
     );
 
-    try {
-      final movies = await _searchMoviesUseCase.execute(
-        event.query,
-        1,
-      );
-
-      emitter(
-        currentState.copyWith(
-          movies: movies,
-          isSearching: false,
-          searchError: null,
-          lastSearchResultsPage: 1,
-          lastSearchResultsSize: movies.length,
-          currentQuery: query,
-          queryHistory: filteredQueryHistory,
-        ),
-      );
-    } catch (e) {
-      emitter(
-        currentState.copyWith(
-          isSearching: false,
-          searchError: e.toString(),
-          currentQuery: query,
-          queryHistory: filteredQueryHistory,
-        ),
-      );
-    }
+    add(const FetchPage(page: 1));
   }
 
   FutureOr<void> _handleFetchPage(
