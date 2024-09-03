@@ -11,6 +11,7 @@ class MovieCategorySectionView extends StatelessWidget {
     required this.movies,
     this.isLoading = false,
     this.onMovieItemClicked,
+    this.onViewMoreClicked,
     super.key,
   });
 
@@ -18,6 +19,7 @@ class MovieCategorySectionView extends StatelessWidget {
   final List<Movie> movies;
   final bool isLoading;
   final void Function(Movie movie)? onMovieItemClicked;
+  final VoidCallback? onViewMoreClicked;
 
   @override
   Widget build(BuildContext context) {
@@ -40,20 +42,51 @@ class MovieCategorySectionView extends StatelessWidget {
           child: ListView.separated(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             scrollDirection: Axis.horizontal,
-            itemCount: isLoading ? 5 : movies.length,
+            itemCount: isLoading ? 5 : movies.length + 1,
             itemBuilder: (context, index) {
               if (isLoading) {
                 return const MovieItemView.shimmerView();
               }
+
+              if (index == movies.length) {
+                return Align(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: TextButton(
+                      onPressed: onViewMoreClicked,
+                      child: Row(
+                        children: [
+                          Text(
+                            'View More',
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(
+                                  color: Theme.of(context).colorScheme.primary,
+                                ),
+                          ),
+                          Icon(
+                            Icons.chevron_right_rounded,
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              }
+
               final item = movies[index];
+
               return RippleTapView(
-                  onTap: onMovieItemClicked == null
-                      ? null
-                      : () => onMovieItemClicked?.call(item),
-                  child: MovieItemView(movie: item, key: ValueKey(item.id)));
+                onTap: onMovieItemClicked == null
+                    ? null
+                    : () => onMovieItemClicked?.call(item),
+                child: MovieItemView(movie: item, key: ValueKey(item.id)),
+              );
             },
             separatorBuilder: (BuildContext context, int index) {
-              return SizedBox(width: 4.px);
+              return SizedBox(width: 8.px);
             },
           ),
         ),

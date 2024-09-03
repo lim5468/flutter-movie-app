@@ -100,6 +100,10 @@ class _LoadedView extends StatelessWidget {
             isLoading: state.isNowPlayingListLoading,
             onMovieItemClicked: (movie) =>
                 routeToMovieDetails(context, movie.id),
+            onViewMoreClicked: () => routeToMovieCategoryListing(
+              context,
+              MovieCategory.nowPlaying,
+            ),
           ),
           MovieCategorySectionView(
             key: state.isPopularListLoading
@@ -110,6 +114,10 @@ class _LoadedView extends StatelessWidget {
             isLoading: state.isPopularListLoading,
             onMovieItemClicked: (movie) =>
                 routeToMovieDetails(context, movie.id),
+            onViewMoreClicked: () => routeToMovieCategoryListing(
+              context,
+              MovieCategory.popular,
+            ),
           ),
           MovieCategorySectionView(
             key: state.isTopRatedListLoading
@@ -120,6 +128,10 @@ class _LoadedView extends StatelessWidget {
             isLoading: state.isTopRatedListLoading,
             onMovieItemClicked: (movie) =>
                 routeToMovieDetails(context, movie.id),
+            onViewMoreClicked: () => routeToMovieCategoryListing(
+              context,
+              MovieCategory.topRated,
+            ),
           ),
           MovieCategorySectionView(
             key: state.isUpcomingListLoading
@@ -130,6 +142,10 @@ class _LoadedView extends StatelessWidget {
             isLoading: state.isUpcomingListLoading,
             onMovieItemClicked: (movie) =>
                 routeToMovieDetails(context, movie.id),
+            onViewMoreClicked: () => routeToMovieCategoryListing(
+              context,
+              MovieCategory.upcoming,
+            ),
           ),
         ],
       ),

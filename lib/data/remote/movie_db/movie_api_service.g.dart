@@ -59,7 +59,7 @@ class _MovieApiService implements MovieApiService {
   Future<GetMovieListResponse> getMoviesByGenre({
     required String apiKey,
     required String genreIds,
-    String? sortBy = 'primary_release_date.des',
+    String? sortBy = 'popularity.desc',
     int? page,
   }) async {
     final _extra = <String, dynamic>{};
